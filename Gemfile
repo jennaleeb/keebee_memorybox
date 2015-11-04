@@ -33,6 +33,9 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 # Devise authentication
 gem 'devise'
 
+# Fancybox lightbox
+gem 'fancybox2-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

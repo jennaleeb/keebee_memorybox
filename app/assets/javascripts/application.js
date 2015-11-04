@@ -15,3 +15,29 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require fancybox
+
+$(document).ready(function() {
+  // $("a.fancybox").fancybox();
+
+  /*$(".fancybox")
+      .attr('rel', 'gallery')
+      .fancybox({
+          type: 'iframe',
+          autoSize : false,
+          arrows: false,
+          beforeLoad : function() {         
+              if ($(this.element).attr('id') == 'popup-sign-up' || 'popup-sign-in') {
+                  this.width  = 500;
+                  this.height = 500;
+              } else {
+                  this.width  = 200;
+                  this.height = 500;
+              }
+          }
+      });
+
+    $('.submit_button').click(function(){
+    	 parent.$.fancybox.close();
+    }); */
+})
