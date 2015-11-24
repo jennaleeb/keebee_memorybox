@@ -28,7 +28,14 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
 
       if @patient.save
-        redirect_to "/patients/#{@patient.id}/photos/new"
+
+        if params[:images]
+          params[:images].each do |image|
+            @patient.photos.create(image: image)
+          end
+          redirect_to patients_path
+        end
+
       else
 
       end

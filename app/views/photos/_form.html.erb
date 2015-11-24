@@ -19,7 +19,7 @@
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-10">
       <%= f.label "Upload a File" %>
-      <%= f.file_field :image, class: 'form-control'%>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
     </div>
   </div>
 
