@@ -20,6 +20,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
+    @patient = Patient.find(params[:id])
   end
 
   # POST /patients
@@ -33,9 +34,10 @@ class PatientsController < ApplicationController
           params[:images].each do |image|
             @patient.photos.create(image: image)
           end
-          redirect_to patients_path
         end
 
+        redirect_to edit_patient_path(@patient)
+        
       else
 
       end
@@ -44,25 +46,37 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json
   def update
-    respond_to do |format|
-      if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
-        format.json { render :show, status: :ok, location: @patient }
-      else
-        format.html { render :edit }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
+    @patient = Patient.find(params[:id])
+
+    if @patient.update(patient_params)
+      
+      if params[:images]
+        params[:images].each do |image|
+          @patient.photos.create(image: image)
+        end
       end
+      redirect_to patient_path
     end
+    
+    # respond_to do |format|
+    #   if @patient.update(patient_params)
+    #     format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @patient }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @patient.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /patients/1
   # DELETE /patients/1.json
   def destroy
-    @patient.destroy
-    respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @patient.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

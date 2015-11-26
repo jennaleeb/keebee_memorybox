@@ -1,5 +1,56 @@
-<%- model_class = Patient -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
-<%= render :partial => 'form' %>
+<section class="profile-description">
+
+  <div class="col-sm-6 black-overlay" id="describe-them-image">
+    <div class="black-overlay">
+      <div class="center-content text-overlay">
+        <p class="">Tell us more about</p>
+        <h1 class=""><%= @patient.first_name %></h1>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="col-sm-offset-6 col-sm-6">
+  	<div class="center-vertical">
+
+  		<%= form_for @patient, :html => { :class => "", :multipart => true } do |f| %>
+
+	  	
+	  		<div class="form-group">
+	  		  <%= f.label "What is #{@patient.first_name}'s favourite music?" , :class => '' %>
+	  		    <div class=""> 
+	  		      <%= f.text_field :favourite_music, :class => 'form-control' %>
+	  		    </div>
+	  		</div>
+
+	  		<div class="form-group">
+	  		  <%= f.label "What are #{@patient.first_name}'s favourite activities?" , :class => '' %>
+	  		    <div class=""> 
+	  		      <%= f.text_field :favourite_activities, :class => 'form-control' %>
+	  		    </div>
+	  		</div>
+
+	  		<div class="form-group">
+	  		  	<%= f.label "Please share some family photos", :class => '' %>
+	  		    <div class=""> 
+	  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
+	  		    </div>
+	  		</div>
+
+	  		  
+	  		<div class="">
+	  		  <%= f.submit "Update Profile", :class => 'btn btn-primary form-button' %>
+	  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	  		              patients_path, :class => 'btn btn-default' %>
+	  		</div>
+
+  		  
+
+  		<% end %>
+
+  	</div>
+  	
+
+  </div>
+
+</section>

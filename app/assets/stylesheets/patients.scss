@@ -13,7 +13,7 @@
 	left: 0px;
 }
 
-#new-photo-image {
+#describe-them-image {
 	background: image-url("books.jpeg") no-repeat center center;
 	background-attachment: fixed;
 	background-size: cover;
@@ -22,13 +22,14 @@
 	left: 0px;
 }
 
-.call-to-action {
-	font-size: 1.5em;
-    text-align: center;
-    top: 50%;
-    position: relative;
-}
-
 .form-button {
 	margin-left: 8px;
+}
+
+.profile-description p {
+	font-size: 1.8em;
+}
+
+.profile-description h1 {
+	font-size: 3em;
 }
