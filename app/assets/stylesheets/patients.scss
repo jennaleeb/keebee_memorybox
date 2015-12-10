@@ -8,9 +8,8 @@
 	background: image-url("bench.jpg") no-repeat center center;
 	background-attachment: fixed;
 	background-size: cover;
+	width: 100%;
 	height: 100%;
-	position: absolute;
-	left: 0px;
 }
 
 #describe-them-image {
@@ -18,18 +17,72 @@
 	background-attachment: fixed;
 	background-size: cover;
 	height: 100%;
-	position: absolute;
-	left: 0px;
+	width: 100%;
 }
 
-.form-button {
-	margin-left: 8px;
+#show-profile-image  {
+	/*Find another one*/
+	background: image-url("books.jpeg") no-repeat center center;
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
 }
 
-.profile-description p {
+
+.profile h1 {
 	font-size: 1.8em;
 }
 
-.profile-description h1 {
+.profile h2 {
 	font-size: 3em;
+}
+
+.profile h3 {
+	font-weight: bolder;
+}
+
+.profile label {
+	font-size: 1.2em;
+}
+
+.profile p {
+	font-size: 16px;
+
+}
+
+.profile ul {
+	margin: 1em 0 1em 0;
+}
+
+.profile li {
+	font-size: 1.3em;
+}
+
+.photo-container {
+
+	display: -webkit-flex; /* Safari */
+	display: flex;
+
+	-webkit-flex-wrap: wrap; /* Safari */
+	flex-wrap: wrap;
+
+	margin-top: 1em;
+
+	max-height: 14em;
+	overflow: scroll;
+}
+
+.photo-container .media-object {
+	margin: 0.1em;
+}
+
+.profile button {
+	display: inline-block;
+	position: absolute;
+	bottom: 1em;
+	left: 1em;
+}
+.profile button a {
+	color: white;
 }

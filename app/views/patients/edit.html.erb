@@ -1,56 +1,57 @@
-<section class="profile-description">
+<div class="container-fluid profile">
 
-  <div class="col-sm-6 black-overlay" id="describe-them-image">
-    <div class="black-overlay">
-      <div class="center-content text-overlay">
-        <p class="">Tell us more about</p>
-        <h1 class=""><%= @patient.first_name %></h1>
-      </div>
-      
-    </div>
-  </div>
+		<div class="column-left">
+			<div id="describe-them-image">
+				<div class="black-overlay">
+					<div class="center-content text-overlay">
+						<h1 class="">Tell us more about</h1><br>
+						<h2 class=""><%= @patient.first_name %></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="column-right">
 
-  <div class="col-sm-offset-6 col-sm-6">
-  	<div class="center-vertical">
+			<div class="center-content">
+		  		<%= form_for @patient, :html => { :class => "form-horizontal", :multipart => true } do |f| %>
 
-  		<%= form_for @patient, :html => { :class => "", :multipart => true } do |f| %>
+			  	
+			  		<div class="form-group">
+			  		  <%= f.label :favourite_music, "What is #{@patient.first_name.titlecase}'s favourite type of music?" , :class => '' %>
+			  		    <div class=""> 
+			  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
 
-	  	
-	  		<div class="form-group">
-	  		  <%= f.label "What is #{@patient.first_name}'s favourite music?" , :class => '' %>
-	  		    <div class=""> 
-	  		      <%= f.text_field :favourite_music, :class => 'form-control' %>
-	  		    </div>
-	  		</div>
+			  		    </div>
+			  		</div>
 
-	  		<div class="form-group">
-	  		  <%= f.label "What are #{@patient.first_name}'s favourite activities?" , :class => '' %>
-	  		    <div class=""> 
-	  		      <%= f.text_field :favourite_activities, :class => 'form-control' %>
-	  		    </div>
-	  		</div>
+			  		<div class="form-group">
+			  		  <%= f.label :favourite_music, "What are #{@patient.first_name}'s favourite activities?" , :class => '' %>
+	
+			  		    <div class=""> 
+			  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'Type something and hit enter' %>
+			  		    </div>
+			  		</div>
 
-	  		<div class="form-group">
-	  		  	<%= f.label "Please share some family photos", :class => '' %>
-	  		    <div class=""> 
-	  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
-	  		    </div>
-	  		</div>
+			  		<div class="form-group">
+			  		  	<%= f.label "Please share some family photos", :class => '' %>
+			  		    <div class=""> 
+			  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
+			  		    </div>
+			  		</div>
 
-	  		  
-	  		<div class="">
-	  		  <%= f.submit "Update Profile", :class => 'btn btn-primary form-button' %>
-	  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-	  		              patients_path, :class => 'btn btn-default' %>
-	  		</div>
+			  		  
+			  		<div class="">
+			  		  <%= f.submit "Update Profile", :class => 'btn btn-primary form-button' %>
+			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+			  		              patients_path, :class => 'btn btn-default' %>
+			  		</div>
 
-  		  
+		  		  
 
-  		<% end %>
+		  		<% end %>
+			</div>		
 
-  	</div>
-  	
-
-  </div>
-
-</section>
+		</div>
+	
+</div>

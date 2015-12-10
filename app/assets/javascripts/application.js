@@ -16,8 +16,12 @@
 //= require turbolinks
 //= require_tree .
 //= require fancybox
+//= require bootstrap-tokenfield
+
+
 
 $(document).ready(function() {
+
   // $("a.fancybox").fancybox();
 
   /*$(".fancybox")
@@ -40,4 +44,17 @@ $(document).ready(function() {
     $('.submit_button').click(function(){
     	 parent.$.fancybox.close();
     }); */
+
+  $("input.tokenize").tokenfield();
+  // $(".g img").hide()
+
+  // setInterval(function(){
+  //    //fade in the random index of the image collection
+  //    var randomnumber=Math.floor(Math.random()*$(".g").children().length);
+  //    $(".g img:eq(" + randomnumber + ")").fadeIn(100);     
+  //   }, 10);
+
+
+
+
 })

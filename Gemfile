@@ -30,6 +30,9 @@ gem "aws-sdk"
 # Bootstrap
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+# Bootstrap tokenfield
+gem 'bootstrap_tokenfield_rails'
+
 # Devise authentication
 gem 'devise'
 

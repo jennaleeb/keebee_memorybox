@@ -1,16 +1,52 @@
-<section class="profile-description">
+<div class="container-fluid profile">
 
-  <div class="col-sm-6 black-overlay" id="describe-them-image">
-    <div class="black-overlay">
-      <div class="center-content text-overlay">
-        <p class="">Here is </p>
-        <h1 class=""><%= @patient.first_name %>'s</h1>
-        <p class="">Profile</p>
-      </div>
-      
-    </div>
-  </div>
+		<div class="column-left">
+			<div id="show-profile-image">
+				<div class="black-overlay">
+					<div class="center-content text-overlay">
+					  <h2 class=""><%= @patient.first_name %>'s</h2><br>
+					  <h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="column-right">
 
-</section>
+			<div class="center-vertical">
+
+				<h3>Favourite Music</h3>
+				<ul>
+					<li><%= @patient.favourite_music %></li>
+
+				</ul>
 
 
+				<h3>Favourite Activities</h3>
+
+				<ul>
+					<% @patient.activity_deliniate.each do |activity| %>
+					<li><%= activity.titlecase %></li>
+					<% end %>
+				</ul>
+
+				<h3>Uploaded Photos</h3>
+
+				  <div class="photo-container">
+
+				  	<% @patient.photos.each do |photo| %>
+
+				  	  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+				  	<% end %>
+
+				  </div>
+
+				  
+				 
+				   
+
+			</div>		
+			<button class="btn btn-primary"><%= link_to 'Edit Profile', edit_patient_path(@patient) %></button>
+		</div>
+	
+</div>

@@ -2,8 +2,110 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$primary-logo-color: #E57200;
-
-#main-logo {
-	color: $primary-logo-color;
+#aa_logo {
+	position: absolute;
+	left: 1em;
+	height: 3em;
 }
+.main-pattern h1 {
+	font-size: 3em;
+	width: 100%;
+	text-align: center;
+	top: 50%;
+	position: absolute;
+
+
+}
+
+.main-pattern {
+	margin-top: 2em;
+	width: 100%;
+}
+
+.g {
+	padding: 0em;
+	overflow: hidden;
+	list-style: none;
+
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-flex-direction: row; /* Safari */
+	flex-direction: row;
+
+}
+
+.g img {
+	height: 100%;
+	-webkit-transition: all 750ms ease;
+	-moz-transition: all 750ms ease;
+	-ms-transition: all 750ms ease;
+	-o-transition: all 750ms ease;
+	transition: all 750ms ease;
+
+}
+
+.g img:hover {
+	-webkit-filter: grayscale(0%) contrast(70%);
+	filter: grayscale(0%) contrast(90%);
+	-webkit-transition: all 750ms ease;
+	-moz-transition: all 750ms ease;
+	-ms-transition: all 750ms ease;
+	-o-transition: all 750ms ease;
+	transition: all 750ms ease;
+}
+
+.g li {
+	display: inline-block;
+	float: left;
+	height: 15em;
+	width: 12.5%;
+	overflow: hidden;
+}
+
+/*@media screen and (min-width: 10em) {
+
+	.g li {
+		width: 50%; 
+	}
+	.g li:nth-child(2n+1) {
+		clear: left;
+	}
+}
+
+
+@media screen and (min-width: 50em) {
+	.g li {
+    	width: 25%; 
+  	}
+  	.g li:nth-child(4n+1) {
+  		clear: left;
+  	}
+  	.g li:nth-child(3n+1) {
+		clear: none;
+	}
+}
+
+@media screen and (min-width: 55em) {
+	.g li {
+    	width: 16.6666667%; 
+  	}
+  	.g li:nth-child(6n+1) {
+  		clear: left;
+  	}
+  	.g li:nth-child(n+1) {
+		clear: none;
+	}
+}
+
+@media screen and (min-width: 60em) {
+	.g li {
+    	width: 12.5%;
+  	}
+  	.g li:nth-child(8n+1) {
+  		clear: left;
+  	}
+  	.g li:nth-child(n+1) {
+		clear: none;
+	}
+}*/

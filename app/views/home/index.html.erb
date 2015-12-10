@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default">
-
+<nav class="navbar navbar-static-top">
+	<%= image_tag("ambient_activity.png", :id => 'aa_logo') %>
 	<div class="container">
 		<% if user_signed_in? %>
 			<ul class="nav navbar-nav navbar-right">
@@ -13,8 +13,8 @@
 			</ul>
 		<% else %>
 		 	<ul class="nav navbar-nav navbar-right">
-			  	<li><button class="btn btn-default navbar-btn"><%= link_to "Sign Up", new_user_registration_path, class: "fancybox navbar-link", id: "popup-sign-up" %></button></li>
-			  	<li><%= link_to "Sign In", new_user_session_path, class: "navbar-link" %></button></li>
+			  	<li><button class="btn navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button></li>
+			  	<li><%= link_to "Sign In", new_user_session_path %></button></li>
 			</ul>
 		<% end %>
 
@@ -22,9 +22,55 @@
 	</div>
 </nav>
 
-<div class="container-fluid center-content">
 
-	<h1 id="main-logo"><strong>Keebee </strong>Memory Box</h1>
 
-</div>
+  <div class="main-pattern" >
+  	<ul class="g">
+			<li><%= image_tag("person21.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person13.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person2.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person24.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person9.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person3.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person15.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person16.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person4.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person17.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person5.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person18.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person19.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person6.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person12.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person7.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person20.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person8.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person22.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person9.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person23.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person24.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
+
+
+
+		</ul>
+
+		<h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+
+	</div>
+
+
+
+
+
+
+  
 

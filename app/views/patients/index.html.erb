@@ -4,11 +4,12 @@
   
   <table class="table table-striped">
     <thead>
+
       <tr>
         <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:first_name) %></th>
         <th><%= model_class.human_attribute_name(:last_name) %></th>
-        <th>Media?</th>
+        <!-- <th>Photos?</th> -->
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
@@ -18,12 +19,13 @@
           <td><%= link_to patient.id, patient_path(patient) %></td>
           <td><%= patient.first_name %></td>
           <td><%= patient.last_name %></td>
-          <td>
+          <!-- <td>
             <% patient.photos.each do |photo| %>
               <%= link_to image_tag(photo.image.url(:thumb), class: 'media-object'), photo.image.url, target: '_blank' %>
             <% end %>
-          </td>
+          </td> -->
           <td>
+            <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
                         edit_patient_path(patient), :class => 'btn btn-default btn-xs' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -31,7 +33,6 @@
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-xs btn-danger' %>
-<!--             <%= link_to "Upload Photo", new_patient_photo_path(:patient_id => patient.id), :class => 'btn btn-success btn-xs' %> -->
 
           </td>
         </tr>
