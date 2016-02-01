@@ -1,20 +1,28 @@
 <nav class="navbar navbar-static-top">
 	<%= image_tag("ambient_activity.png", :id => 'aa_logo') %>
 	<div class="container">
+
 		<% if user_signed_in? %>
 			<ul class="nav navbar-nav navbar-right">
+				<li><%=link_to "ABOUT", patients_path %></li>
 				
 				<% if current_user.admin_user? %>
-					<li><button class="btn btn-default navbar-btn"><%=link_to "Go to patient list", patients_path %></button></li>
+				
+					<li><%=link_to "MY PATIENTS", patients_path %></li>
+
 				<% else %>
-					<li><button class="btn btn-default navbar-btn"><%= link_to 'New Patient Profile', new_patient_path, :class => 'navbar-link' %></li>
+
+					<li><%=link_to "PROFILE", patients_path %></li>
+					
 				<% end %>
-					<li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></button></li>
+
+					<li><%= link_to 'CREATE NEW', new_patient_path, :class => 'navbar-link' %></li>
+					<li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
 			</ul>
 		<% else %>
 		 	<ul class="nav navbar-nav navbar-right">
-			  	<li><button class="btn navbar-btn"><%= link_to "Sign Up", new_user_registration_path %></button></li>
-			  	<li><%= link_to "Sign In", new_user_session_path %></button></li>
+<!-- 			  	<li><%= link_to "SIGN UP", new_user_registration_path %></li>
+ -->			  	<li><%= link_to "SIGN IN", new_user_session_path %></button></li>
 			</ul>
 		<% end %>
 

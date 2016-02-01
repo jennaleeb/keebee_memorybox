@@ -86,3 +86,33 @@
 .profile button a {
 	color: white;
 }
+
+/*Patient Index Page*/
+
+.patient-index-table tr {
+	cursor: pointer; cursor: hand;
+}
+
+.patient-index-table th:nth-child(4) {
+	width: 12em;
+}
+
+.hiddenRow {
+    padding: 0 !important;
+
+    h1 {
+    	font-size: 1.2em;
+    	margin-top: 1em;
+    }
+}
+
+.photo-container {
+	display: flex;
+	flex-direction: row;
+
+	img {
+		margin: 1em;
+	}
+
+
+}

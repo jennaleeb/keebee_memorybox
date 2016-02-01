@@ -15,14 +15,14 @@
     top: 0;
     width: 100%;
     font-size: 16px;
-    padding-top: 0.5em;
-    padding-right: 1em;
     padding: 0.2em 1em 0.2em 0; 
     background-color: #f9f9f9;
   }
-
+  .nav>li {
+    padding: 1em 1.5em;
+  }
   .nav>li>a {
- 
+    padding: 0em;
   }
 
   .nav>li>a:hover, .nav>li>a:focus {
@@ -33,6 +33,7 @@
     border: 1px solid black;
     background: transparent;
     font-size: 14px;
+    margin-right: 1em;
 
   }
 
