@@ -15,38 +15,54 @@
 
 			<div class="center-vertical">
 
-				<h3>Favourite Music</h3>
-				<ul>
-					<li><%= @patient.favourite_music %></li>
+				<div class="">
 
-				</ul>
+					<h3>Favourite Music</h3>
+					<ul>
+						<li><%= @patient.favourite_music %></li>
+
+					</ul>
 
 
-				<h3>Favourite Activities</h3>
+					<h3>Favourite Activities</h3>
 
-				<ul>
-					<% @patient.activity_deliniate.each do |activity| %>
-					<li><%= activity.titlecase %></li>
-					<% end %>
-				</ul>
+					<ul>
+						<% @patient.activity_deliniate.each do |activity| %>
+						<li><%= activity.titlecase %></li>
+						<% end %>
+					</ul>
 
-				<h3>Uploaded Photos</h3>
+					<h3>Uploaded Photos</h3>
 
-				  <div class="photo-container">
+					  <div class="photo-container">
 
-				  	<% @patient.photos.each do |photo| %>
+					  	<% @patient.photos.each do |photo| %>
 
-				  	  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
-				  	<% end %>
+					  	  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
 
-				  </div>
+<!-- 					  	  <%= link_to image_tag("ambient_activity.png"),
+					  	              patient_photo_path(@patient, photo),
+					  	              :method => :delete,
+					  	              :class => 'btn btn-xs btn-danger' %> -->
 
-				  
-				 
-				   
+					  	  <%= link_to patient_photo_path(@patient, photo),
+					  	  			:method => :delete do %>
+					  	      <i class="glyphicon-pencil"></i>
+					  	  <% end %>
+
+					  	<% end %>
+
+					  </div>
+
+					  
+					 
+					   
+					  <button class="btn btn-primary"><%= link_to 'Edit Profile', edit_patient_path(@patient) %></button>
+
+				</div>
 
 			</div>		
-			<button class="btn btn-primary"><%= link_to 'Edit Profile', edit_patient_path(@patient) %></button>
+			
 		</div>
 	
 </div>

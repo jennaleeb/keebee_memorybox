@@ -7,8 +7,38 @@
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'>
 </head>
-<body>	
+<body>
 	
+	<nav class="navbar navbar-static-top">
+		<%= link_to image_tag("ambient_activity.png"), root_path, :class => "aa_logo" %>
+		<div class="container">
+
+			<% if user_signed_in? %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%=link_to "ABOUT", patients_path %></li>
+					
+					<% if current_user.admin_user? %>
+					
+						<li><%=link_to "MY PATIENTS", patients_path %></li>
+
+					<% else %>
+
+						<li><%=link_to "PROFILE", patients_path %></li>
+						
+					<% end %>
+
+						<li><%= link_to 'CREATE NEW', new_patient_path, :class => 'navbar-link' %></li>
+						<li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+				</ul>
+			<% else %>
+			 	<ul class="nav navbar-nav navbar-right">
+			  	<li><%= link_to "SIGN IN", new_user_session_path %></button></li>
+				</ul>
+			<% end %>
+
+			
+		</div>
+	</nav>	
 
 	<%= yield %>
 

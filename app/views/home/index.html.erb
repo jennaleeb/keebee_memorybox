@@ -1,77 +1,29 @@
-<nav class="navbar navbar-static-top">
-	<%= image_tag("ambient_activity.png", :id => 'aa_logo') %>
-	<div class="container">
+  <div class="main-pattern">
 
-		<% if user_signed_in? %>
-			<ul class="nav navbar-nav navbar-right">
-				<li><%=link_to "ABOUT", patients_path %></li>
-				
-				<% if current_user.admin_user? %>
-				
-					<li><%=link_to "MY PATIENTS", patients_path %></li>
-
-				<% else %>
-
-					<li><%=link_to "PROFILE", patients_path %></li>
-					
-				<% end %>
-
-					<li><%= link_to 'CREATE NEW', new_patient_path, :class => 'navbar-link' %></li>
-					<li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-			</ul>
-		<% else %>
-		 	<ul class="nav navbar-nav navbar-right">
-<!-- 			  	<li><%= link_to "SIGN UP", new_user_registration_path %></li>
- -->			  	<li><%= link_to "SIGN IN", new_user_session_path %></button></li>
-			</ul>
-		<% end %>
-
-		
-	</div>
-</nav>
+			<%= image_tag("person21.jpg", :class => 'grayscale') %>
+			<%= image_tag("person9.jpg", :class => 'grayscale') %>
+			<%= image_tag("person3.jpg", :class => 'grayscale') %>
+			<%= image_tag("person15.jpg", :class => 'grayscale') %>
+			<%= image_tag("person16.jpg", :class => 'grayscale') %>
+			<%= image_tag("person4.jpg", :class => 'grayscale') %>
+			<%= image_tag("person17.jpg", :class => 'grayscale') %>
+			<%= image_tag("person5.jpg", :class => 'grayscale') %>
+			<%= image_tag("person18.jpg", :class => 'grayscale') %>
+			<%= image_tag("person19.jpg", :class => 'grayscale') %>
+			<%= image_tag("person6.jpg", :class => 'grayscale') %>
+			<%= image_tag("person1.jpg", :class => 'grayscale') %>
+			<%= image_tag("person12.jpg", :class => 'grayscale') %>
+			<%= image_tag("person7.jpg", :class => 'grayscale') %>
+			<%= image_tag("person20.jpg", :class => 'grayscale') %>
+			<%= image_tag("person8.jpg", :class => 'grayscale') %>
+			<%= image_tag("person22.jpg", :class => 'grayscale') %>
+			<%= image_tag("person9.jpg", :class => 'grayscale') %>
+			<%= image_tag("person23.jpg", :class => 'grayscale') %>
+			<%= image_tag("person24.jpg", :class => 'grayscale') %>
 
 
 
-  <div class="main-pattern" >
-  	<ul class="g">
-			<li><%= image_tag("person21.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person13.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person2.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person24.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person9.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person3.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person15.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person16.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person4.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person17.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person5.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person18.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person19.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person6.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person12.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person7.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person20.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person8.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person22.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person9.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person23.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person24.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-			<li><%= image_tag("person1.jpg", :class => 'grayscale') %></li>
-
-
-
-		</ul>
-
-		<h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+		<h1 class="thin-font center-content">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
 
 	</div>
 
