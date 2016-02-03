@@ -90,3 +90,25 @@ body, .main-pattern {
 	transition: all 750ms ease;
 }
 
+/*Sign in stuff*/
+
+.login-form {
+	margin: 0; /*Override bootstrap-added margin*/
+}
+
+.card {
+	border-radius: 3px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+	padding: 1em 2em 1em 2em;
+	margin-top: 3em;
+	background: #f9f9f9;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	margin-top: 0.8em;
+	border-bottom: 1px solid #cfcfcf;
+	padding-bottom: 0.8em;
+}

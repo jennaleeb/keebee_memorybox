@@ -18,7 +18,7 @@ html {
 body {
 	font-size: 14px;
 	min-height: 100%;
-	padding-top: 60px;
+	padding-top: 50px;
 }
 
 body,
@@ -114,7 +114,10 @@ a:link, a:visited {
 
 nav li {
 	padding-left: 1em;
+}
 
+.nav > li .login-buttons {
+	padding: 0;
 }
 
 nav li > a:before {
