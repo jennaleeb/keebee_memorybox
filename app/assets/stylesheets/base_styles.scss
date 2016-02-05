@@ -31,7 +31,7 @@ h6,
 a,
 td,
 li {
-    font-family: 'Raleway', Calibri, Helvetica,Arial,sans-serif;
+    font-family: "HelveticaNeue-Light", Helvetica,Arial,sans-serif;
     font-weight: 500;
     margin: 0;
 }
@@ -67,6 +67,7 @@ a:link, a:visited {
 .center-content {
 	position: relative;
 	top: 50%;
+	transform: translateY(-50%);
 	width: 100%;
 	text-align: center;
 }
