@@ -27,7 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Paperclip for file uploads
 gem "paperclip", "~> 4.3"
-gem "aws-sdk"
+# need a lower version to work with aws
+gem 'aws-sdk', '< 2.0'
 
 # Bootstrap
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
