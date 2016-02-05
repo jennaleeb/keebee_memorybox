@@ -88,8 +88,13 @@ a:link, a:visited {
 }
 
 .column-right {
+	margin-top: 1em;
 	position: absolute;
 	right: 0px;
+	width: 50%;
+
+	overflow-y: scroll;
+	height: 41em;
 	width: 50%;
 }
 
