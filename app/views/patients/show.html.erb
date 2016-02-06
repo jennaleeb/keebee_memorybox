@@ -16,23 +16,152 @@
 			<div class="center-vertical">
 
 				<div class="">
+					<h3>Basic Information</h3>
+					<table class="table">
+						<tr>
+							<td class="table-head">Nickname</td>
+							<td><%= @patient.nickname %></td>
+						</tr>
 
-					<h3>Favourite Music</h3>
-					<ul>
-						<li><%= @patient.favourite_music %></li>
+						<tr>
+							<td class="table-head">Preferred Language</td>
+							<td><%= @patient.language %></td>
+						</tr>
 
-					</ul>
+						<tr>
+							<td class="table-head">Birthplace</td>
+							<td><%= @patient.birthplace %></td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Hometown</td>
+							<td><%= @patient.home_base %></td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Spouse Name</td>
+							<td><%= @patient.spouse_name %></td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Children</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.children).each do |child| %>
+									<li><%= child.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Grandchildren</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.grandchildren).each do |child| %>
+									<li><%= child.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Occupation</td>
+							<td><%= @patient.occupation%></td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Pets</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.pets).each do |pet| %>
+									<li><%= pet.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+					</table>
+
+					<h3>Interests & Hobbies</h3>
+					
+					<table class="table">
+
+						<tr>
+							<td class="table-head">Favourite Sports</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_sports).each do |sport| %>
+									<li><%= sport.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Favourite Radio</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_radio).each do |radio| %>
+									<li><%= radio.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Favourite TV/Movies</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_movie_tv).each do |title| %>
+									<li><%= title.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Favourite Childhood Games</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_childhood_games).each do |game| %>
+									<li><%= game.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Favourite Actors</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_actors).each do |actor| %>
+									<li><%= actor.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Favourite Animals</td>
+							<td>
+								<ul>
+									<% @patient.split_list(@patient.favourite_animals).each do |animal| %>
+									<li><%= animal.titlecase %></li>
+									<% end %>
+								</ul>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="table-head">Additional Information</td>
+							<td><%= @patient.additional_info %></td>
+						</tr>
 
 
-					<h3>Favourite Activities</h3>
+					</table>
 
-					<ul>
-						<% @patient.activity_deliniate.each do |activity| %>
-						<li><%= activity.titlecase %></li>
-						<% end %>
-					</ul>
-
-					<h3>Uploaded Photos</h3>
+					<h3>Photos</h3>
 
 					  <div class="photo-container">
 
@@ -40,10 +169,6 @@
 
 					  	  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
 
-<!-- 					  	  <%= link_to image_tag("ambient_activity.png"),
-					  	              patient_photo_path(@patient, photo),
-					  	              :method => :delete,
-					  	              :class => 'btn btn-xs btn-danger' %> -->
 
 					  	  <%= link_to patient_photo_path(@patient, photo),
 					  	  			:method => :delete do %>

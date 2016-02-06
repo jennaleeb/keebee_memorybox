@@ -65,7 +65,7 @@ a:link, a:visited {
   }
 
 .center-content {
-	position: relative;
+	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 100%;
@@ -89,13 +89,12 @@ a:link, a:visited {
 }
 
 .column-right {
-	margin-top: 1em;
+	position: fixed !important;
 	position: absolute;
-	right: 0px;
-	width: 50%;
-
+	top: 4em;
+	right: 0;
+	bottom: 2em;
 	overflow-y: scroll;
-	height: 41em;
 	width: 50%;
 }
 

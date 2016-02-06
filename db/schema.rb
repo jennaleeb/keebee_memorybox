@@ -11,20 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126035641) do
-
-  create_table "galleries", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20160205143733) do
 
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "favourite_music"
     t.string   "favourite_activities"
+    t.string   "nickname"
+    t.string   "language"
+    t.string   "birthplace"
+    t.string   "home_base"
+    t.string   "spouse_name"
+    t.string   "children"
+    t.string   "grandchildren"
+    t.string   "occupation"
+    t.string   "pets"
+    t.string   "favourite_sports"
+    t.string   "favourite_radio"
+    t.string   "favourite_childhood_games"
+    t.string   "favourite_movie_tv"
+    t.string   "favourite_actors"
+    t.string   "favourite_animals"
+    t.text     "additional_info"
   end
 
   create_table "photos", force: :cascade do |t|
