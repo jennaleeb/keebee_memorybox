@@ -37,18 +37,7 @@
           <td colspan="12" class="hiddenRow">
             <div class="accordian-body collapse" id="data<%=patient.id%>">
 
-              <h1>Favourite Music</h1>
-                <li><%= patient.favourite_music %></li>
 
-              <h1>Favourite Activities</h1>
-              
-              <% if !patient.favourite_activities.nil? %>
-
-                <% patient.activity_deliniate.each do |activity| %>
-                  <li><%= activity.titlecase %></li>
-                <% end %>
-
-              <% end %>
               
               <div class="photo-container">
                 <% patient.photos.each do |photo| %>
