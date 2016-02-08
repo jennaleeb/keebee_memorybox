@@ -31,8 +31,6 @@ class PatientsController < ApplicationController
 
       if @patient.save
 
-        # Make local directory to store images
-        @patient.create_directory
         redirect_to edit_patient_path(@patient)
         
       end
@@ -48,9 +46,6 @@ class PatientsController < ApplicationController
       if params[:images]
         params[:images].each do |image|
           @photo = @patient.photos.create(image: image)
-
-          # Store the image locally
-          @photo.image.copy_to_local_file(:original, "Profiles/#{@patient.first_name}/Pictures")
         end
       end
       
