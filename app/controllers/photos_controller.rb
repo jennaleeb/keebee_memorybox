@@ -25,9 +25,9 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    @patient = Patient.find(params[:patient_id])
-    @photo = Photo.new(photo_params)
-    @photo.patient_id = @patient.id
+    # @patient = Patient.find(params[:patient_id])
+    # @photo = Photo.new(photo_params)
+    # @photo.patient_id = @patient.id
 
       if @photo.save
         redirect_to '/'

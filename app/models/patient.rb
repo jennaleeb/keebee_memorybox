@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class Patient < ActiveRecord::Base
 	belongs_to :user
 	has_many :patients
@@ -7,5 +9,10 @@ class Patient < ActiveRecord::Base
 	def split_list(attribute)
 		list = attribute.split(",")
 		return list
+	end
+
+	def create_directory
+		dirname = "Profiles/#{self.first_name}/Pictures"
+		FileUtils.mkdir_p dirname
 	end
 end
