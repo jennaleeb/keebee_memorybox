@@ -5,7 +5,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 
 # Use sqlite3 as the database for test/dev and postgres for deployment
-gem 'pg'
+group :production do
+	gem 'pg'
+end
+
+group :development, :test do
+	gem 'sqlite3'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
