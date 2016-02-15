@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160206220218) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160206220218) do
     t.integer  "user_id"
   end
 
-  add_index "patients", ["user_id"], name: "index_patients_on_user_id"
+  add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -67,7 +70,8 @@ ActiveRecord::Schema.define(version: 20160206220218) do
     t.string   "user_category"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "patients", "users"
 end
