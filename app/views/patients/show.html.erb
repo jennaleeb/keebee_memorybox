@@ -47,7 +47,7 @@
 							<td class="table-head">Children</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.children).each do |child| %>
+									<% Array(@patient.split_list(@patient.children)).each do |child| %>
 									<li><%= child.titlecase %></li>
 									<% end %>
 								</ul>
@@ -58,7 +58,7 @@
 							<td class="table-head">Grandchildren</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.grandchildren).each do |child| %>
+									<% Array(@patient.split_list(@patient.grandchildren)).each do |child| %>
 									<li><%= child.titlecase %></li>
 									<% end %>
 								</ul>
@@ -74,7 +74,7 @@
 							<td class="table-head">Pets</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.pets).each do |pet| %>
+									<% Array(@patient.split_list(@patient.pets)).each do |pet| %>
 									<li><%= pet.titlecase %></li>
 									<% end %>
 								</ul>
@@ -86,12 +86,20 @@
 					<h3>Interests & Hobbies</h3>
 					
 					<table class="table">
+						<tr>
+							<td class="table-head">Favourite Song</td>
+							<td><% @patient.songs.each do |song| %>
+									<%= song.title %>
+								<% end %>
+
+							</td>
+						</tr>
 
 						<tr>
 							<td class="table-head">Favourite Sports</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_sports).each do |sport| %>
+									<% Array(@patient.split_list(@patient.favourite_sports)).each do |sport| %>
 									<li><%= sport.titlecase %></li>
 									<% end %>
 								</ul>
@@ -102,7 +110,7 @@
 							<td class="table-head">Favourite Radio</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_radio).each do |radio| %>
+									<% Array(@patient.split_list(@patient.favourite_radio)).each do |radio| %>
 									<li><%= radio.titlecase %></li>
 									<% end %>
 								</ul>
@@ -113,7 +121,7 @@
 							<td class="table-head">Favourite TV/Movies</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_movie_tv).each do |title| %>
+									<% Array(@patient.split_list(@patient.favourite_movie_tv)).each do |title| %>
 									<li><%= title.titlecase %></li>
 									<% end %>
 								</ul>
@@ -124,7 +132,7 @@
 							<td class="table-head">Favourite Childhood Games</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_childhood_games).each do |game| %>
+									<% Array(@patient.split_list(@patient.favourite_childhood_games)).each do |game| %>
 									<li><%= game.titlecase %></li>
 									<% end %>
 								</ul>
@@ -135,7 +143,7 @@
 							<td class="table-head">Favourite Actors</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_actors).each do |actor| %>
+									<% Array(@patient.split_list(@patient.favourite_actors)).each do |actor| %>
 									<li><%= actor.titlecase %></li>
 									<% end %>
 								</ul>
@@ -146,7 +154,7 @@
 							<td class="table-head">Favourite Animals</td>
 							<td>
 								<ul>
-									<% @patient.split_list(@patient.favourite_animals).each do |animal| %>
+									<% Array(@patient.split_list(@patient.favourite_animals)).each do |animal| %>
 									<li><%= animal.titlecase %></li>
 									<% end %>
 								</ul>

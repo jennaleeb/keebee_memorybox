@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
 	                     content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 
 	def copy_file_to_patient_directory
-		self.patient_id
+
 		patient = Patient.find(self.patient_id)
 		if self.id < 10
 			path = Dir["#{Rails.root}/Images/photos/images/000/000/00#{self.id}/original/*"]
@@ -20,5 +20,6 @@ class Photo < ActiveRecord::Base
 			path = Dir["#{Rails.root}/Images/photos/images/000/000/0#{self.id}/original/*"]
 		end
 		FileUtils.cp(path, "Profiles/#{patient.first_name}/Pictures")
+
 	end
 end

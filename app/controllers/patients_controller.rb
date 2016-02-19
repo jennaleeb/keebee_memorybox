@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /patients
   # GET /patients.json
@@ -21,6 +22,7 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+
   end
 
   # POST /patients
@@ -28,6 +30,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     @patient.user_id = current_user.id
+    @song = @patient.songs.new
 
       if @patient.save
 
@@ -84,6 +87,6 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:first_name, :last_name, :nickname, :language, :birthplace,
         :home_base, :spouse_name, :children, :grandchildren, :occupation, :pets, :favourite_sports,
         :favourite_radio, :favourite_childhood_games, :favourite_movie_tv, :favourite_actors,
-        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id)
+        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, songs_attributes: [:id, :title, :artist, :url])
     end
 end

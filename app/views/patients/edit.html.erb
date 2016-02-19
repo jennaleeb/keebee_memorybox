@@ -85,13 +85,50 @@
 			  		
 			  		<h3>Interests & Hobbies</h3>
 			  		<div class="form-group">
-			  			<!-- TODO: Song/Artist/Link -->
 			  		  <%= f.label :favourite_music, "What is #{@patient.first_name.titlecase}'s favourite type of music?" , :class => '' %>
 			  		    <div class=""> 
 			  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
 
 			  		    </div>
 			  		</div>
+
+
+			  		<div class="form-group row">
+			  			<label class="profile">Favourite Song</label>
+			  			<div class="col-sm-12 song-fields">
+				  			<%= f.fields_for :songs, @song do |song_fields| %>
+
+							<div class="col-sm-1">
+								<%= song_fields.label :title, "Title" , :class => 'subtitle' %>
+							</div>
+
+							<div class="col-sm-11">
+								<%= song_fields.text_field :title, :class => 'form-control', :placeholder => 'Song name' %>
+							</div><br>
+
+							<div class="col-sm-1">
+								<%= song_fields.label :artist, "Artist" , :class => 'subtitle' %>
+							</div>
+
+							<div class="col-sm-11">
+								<%= song_fields.text_field :artist, :class => 'form-control', :placeholder => "Song's artist" %>
+							</div>
+
+							<div class="col-sm-1">
+								<%= song_fields.label :url, "Link" , :class => 'subtitle' %>
+							</div>
+
+							<div class="col-sm-11">
+								<%= song_fields.text_field :url, :class => 'form-control', :placeholder => "YouTube or other" %>	
+							</div>    		
+
+				  		    <% end %>
+						</div>
+			  			
+
+			  		</div>
+
+
 
 			  		<div class="form-group">
 			  			<!-- Youtube link? -->

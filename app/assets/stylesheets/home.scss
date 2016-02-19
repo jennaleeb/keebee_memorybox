@@ -114,14 +114,19 @@ body, .main-pattern {
 }
 
 /*Footer on home*/
+.home-wrapper {
+	min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+	margin-bottom: -10em;
+	overflow: hidden;
+}
 
-.footer {
+footer {
 	background-color: #f9f9f9;
 	position: absolute;
-	z-index: 10000;
-	top: 60em;
 	width: 100%;
-	height: 24em;
+	height: 10em;
 }
 
 .signature {
