@@ -9,42 +9,49 @@
 </head>
 <body>
 	
-	<nav class="navbar navbar-static-top">
-		<%= link_to image_tag("ambient_activity.png"), root_path, :class => "aa_logo" %>
+	<nav class="navbar navbar-static-top navbar-default ">
+		<div class="navbar-header">
+	 		<%= link_to image_tag("ambient_activity.png"), root_path, :class => "aa_logo" %>
+	 
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			              <span class="sr-only">Toggle navigation</span>
+			              <span class="icon-bar"></span>
+			              <span class="icon-bar"></span>
+			              <span class="icon-bar"></span>
+			</button>
+		</div>
+ 		
 		<div class="container">
+			<div class="navbar-collapse collapse" id="navbar">
+				<% if user_signed_in? %>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item "><%=link_to "ABOUT", patients_path, :class => 'navbar-link' %></li>
+						
+						<% if current_user.admin_user? %>
+						
+							<li class="nav-item"><%=link_to "MY PATIENTS", patients_path, :class => 'navbar-link' %></li>
 
-			<% if user_signed_in? %>
-				<ul class="nav navbar-nav navbar-right">
-					<li><%=link_to "ABOUT", patients_path %></li>
-					
-					<% if current_user.admin_user? %>
-					
-						<li><%=link_to "MY PATIENTS", patients_path %></li>
+						<% else %>
 
-					<% else %>
+						<% end %>
 
-							<!-- Take this away after configuring views -->
+						<% if current_user.patient_count > 1 %>
+							<li class="nav-item "><%= link_to "MY PROFILES", patients_path, :class => 'navbar-link' %></li>
+						<% elsif current_user.patient_count == 1 %> 	
+							<li class="nav-item "><%= link_to "#{current_user.patient_label.first_name.upcase}'S PROFILE", patient_path(current_user.patient_label), :class => 'navbar-link' %></li>
+						<% end %>
 
-					<% end %>
-
-					<% if current_user.patient_count > 1 %>
-						<li><%= link_to "MY PROFILES", patients_path, :class => 'navbar-link' %></li>
-					<% elsif current_user.patient_count == 1 %> 	
-						<li><%= link_to "#{current_user.patient_label.first_name.upcase}'S PROFILE", patient_path(current_user.patient_label), :class => 'navbar-link' %></li>
-					<% end %>
-
-						<li><%= link_to 'NEW PROFILE', new_patient_path, :class => 'navbar-link' %></li>
-						<li class="login-buttons"><button class="btn btn-default"><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></button></li>
-				</ul>
-			<% else %>
-			 	<ul class="nav navbar-nav navbar-right">
-				 	<li><%=link_to "ABOUT", patients_path %></li>
-				 	<li class="login-buttons"><button class="btn btn-default" ><%= link_to "REGISTER", new_user_registration_path %></button></li>
-				  	<li class="login-buttons"><button class="btn btn-default"><%= link_to "SIGN IN", new_user_session_path %></button></li>
-				</ul>
-			<% end %>
-
-			
+							<li class="nav-item "><%= link_to 'NEW PROFILE', new_patient_path, :class => 'navbar-link' %></li>
+							<li class="login-buttons nav-item "><button class="btn btn-default"><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></button></li>
+					</ul>
+				<% else %>
+				 	<ul class="nav navbar-nav navbar-right">
+					 	<li><%=link_to "ABOUT", patients_path %></li>
+					 	<li class="login-buttons"><button class="btn btn-default" ><%= link_to "REGISTER", new_user_registration_path %></button></li>
+					  	<li class="login-buttons"><button class="btn btn-default"><%= link_to "SIGN IN", new_user_session_path %></button></li>
+					</ul>
+				<% end %>
+			</div>
 		</div>
 	</nav>	
 

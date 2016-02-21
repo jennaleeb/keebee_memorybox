@@ -48,8 +48,9 @@ gem 'devise'
 # Fancybox lightbox
 gem 'fancybox2-rails'
 
+
 #Font awesome
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -72,9 +73,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  # Use sqlite3 as the database for test/dev and postgres for deployment
-  gem 'sqlite3'
 
 end
 

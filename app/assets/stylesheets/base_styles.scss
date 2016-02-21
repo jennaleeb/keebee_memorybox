@@ -88,6 +88,7 @@ a:link, a:visited {
 	height: 100%;
 }
 
+
 .column-right {
 	position: fixed !important;
 	position: absolute;
@@ -96,6 +97,19 @@ a:link, a:visited {
 	bottom: 2em;
 	overflow-y: scroll;
 	width: 50%;
+}
+
+@media (max-width: 800px) {
+	.column-left {
+		height: 35%;
+		width: 100%;
+		margin-top: 15em;
+	}
+
+	.column-right {
+		width: 100%;
+		margin-top: 30em;
+	}
 }
 
 .btn-space {
@@ -125,26 +139,31 @@ nav li {
 	padding: 0;
 }
 
-nav li > a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #000;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+
+@media (min-width: 800px) {
+ 	/*Dont want this effect on the phone*/
+	nav li > a:before {
+	  content: "";
+	  position: absolute;
+	  width: 100%;
+	  height: 2px;
+	  bottom: 0;
+	  left: 0;
+	  background-color: #000;
+	  visibility: hidden;
+	  -webkit-transform: scaleX(0);
+	  transform: scaleX(0);
+	  -webkit-transition: all 0.3s ease-in-out 0s;
+	  transition: all 0.3s ease-in-out 0s;
+	}
+
+	nav li > a:hover:before {
+	  visibility: visible;
+	  -webkit-transform: scaleX(1);
+	  transform: scaleX(1);
+	}
 }
 
-nav li > a:hover:before {
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-}
 
 .aa_logo img {
 	position: absolute;
