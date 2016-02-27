@@ -1,226 +1,321 @@
-<div class="container-fluid profile">
-
-		<div class="column-left">
-			<div id="describe-them-image">
-				<div class="black-overlay">
-					<div class="center-content text-overlay">
-						<h1 class="">Tell us more about</h1><br>
-						<h2 class=""><%= @patient.first_name %></h2>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="column-right">
-
-			<div class="">
-		  		<%= form_for @patient, :html => { :class => "form-horizontal", :multipart => true } do |f| %>
-		  			<h3>Basic Information</h3>
-		  			<div class="form-group">
-		  			  <%= f.label :nickname, "Does #{@patient.first_name.titlecase} a nickname?" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :nickname, :class => 'form-control', :placeholder => 'What is it?' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :language, "Preferred language" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :language, :class => 'form-control', :placeholder => 'E.g. Spanish' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :birthplace, "Where was #{@patient.first_name.titlecase} born?" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :birthplace, :class => 'form-control', :placeholder => 'City, Country.' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :home_base, "Where did #{@patient.first_name.titlecase} live for most of her life (if different from above)?" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :home_base, :class => 'form-control', :placeholder => 'City, Country.' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :spouse_name, "Is/was #{@patient.first_name.titlecase} married?" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :spouse_name, :class => 'form-control', :placeholder => 'What is/was their name?' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :children, "Does #{@patient.first_name.titlecase} have any children? If so, what are their names?" , :class => '' %>
-		  			  <p>If more than one, enter the names separated by a comma.</p>
-		  			    <div class=""> 
-		  			      <%= f.text_field :children, :class => 'form-control tokenize', :placeholder => 'E.g. Jane, Andrew, Simon' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :grandchildren, "What about grandchildren?" , :class => '' %>
-		  			  <p>If more than one, enter the names separated by a comma.</p>
-		  			    <div class=""> 
-		  			      <%= f.text_field :grandchildren, :class => 'form-control tokenize', :placeholder => 'E.g. Deacon, Oona, June' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  			  <%= f.label :occupation, "What was #{@patient.first_name.titlecase}'s primary occupation?" , :class => '' %>
-		  			    <div class=""> 
-		  			      <%= f.text_field :occupation, :class => 'form-control', :placeholder => 'E.g. Painter' %>
-		  			    </div>
-		  			</div>
-
-		  			<div class="form-group">
-		  				<!-- TODO: Should have name and type -->
-		  			  <%= f.label :pets, "Any pets?" , :class => '' %>
-		  			<p>If more than one, enter them separated by a comma.</p>
-		  			    <div class=""> 
-		  			      <%= f.text_field :pets, :class => 'form-control tokenize', :placeholder => 'E.g. Sparky the Dog' %>
-		  			    </div>
-		  			</div>
-			  		
-			  		<h3>Interests & Hobbies</h3>
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_music, "What is #{@patient.first_name.titlecase}'s favourite type of music?" , :class => '' %>
-			  		    <div class=""> 
-			  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
-
-			  		    </div>
-			  		</div>
-
-
-			  		<div class="form-group row">
-			  			<label class="profile">Favourite Song</label>
-			  			<div class="col-sm-12 song-fields">
-				  			<%= f.fields_for :songs, @song do |song_fields| %>
-
-							<div class="col-sm-1">
-								<%= song_fields.label :title, "Title" , :class => 'subtitle' %>
-							</div>
-
-							<div class="col-sm-11">
-								<%= song_fields.text_field :title, :class => 'form-control', :placeholder => 'Song name' %>
-							</div><br>
-
-							<div class="col-sm-1">
-								<%= song_fields.label :artist, "Artist" , :class => 'subtitle' %>
-							</div>
-
-							<div class="col-sm-11">
-								<%= song_fields.text_field :artist, :class => 'form-control', :placeholder => "Song's artist" %>
-							</div>
-
-							<div class="col-sm-1">
-								<%= song_fields.label :url, "Link" , :class => 'subtitle' %>
-							</div>
-
-							<div class="col-sm-11">
-								<%= song_fields.text_field :url, :class => 'form-control', :placeholder => "YouTube or other" %>	
-							</div>    		
-
-				  		    <% end %>
-						</div>
-			  			
-
-			  		</div>
+ <%- model_class = Patient -%>
 
 
 
-			  		<div class="form-group">
-			  			<!-- Youtube link? -->
-			  		  <%= f.label :favourite_sports, "Does #{@patient.first_name} have a favourite sport?" , :class => '' %>
-			  		  <p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_sports, :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
-			  		    </div>
-			  		</div>
+ <div class="fuelux">
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_radio, "Favourite radio show?" , :class => '' %>
-			  		  <p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_radio, :class => 'form-control tokenize', :placeholder => 'E.g. CBC, Car Talk' %>
-			  		    </div>
-			  		</div>
+ 	<%= form_for @patient, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true } do |f| %>
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_movie_tv, "Favourite movies or tv shows?" , :class => '' %>
-			  		  <p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_movie_tv, :class => 'form-control tokenize', :placeholder => 'E.g. Hey Lucy, Leave it to Beaver' %>
-			  		    </div>
-			  		</div>
+ 	<div class="wizard" data-initialize="wizard" id="myWizard">
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_childhood_games, "Favourite games to play as a child?" , :class => '' %>
-			  		  <p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_childhood_games, :class => 'form-control tokenize', :placeholder => 'E.g. Checkers, Hopscotch' %>
-			  		    </div>
-			  		</div>
+ 		<div class="steps-container">
+ 			<ul class="steps">
+ 				<li data-step="1" data-name="campaign" class="active">
+ 					<span class="badge">1</span>New Profile
+ 					<span class="chevron"></span>
+ 				</li>
+ 				<li data-step="2">
+ 					<span class="badge">2</span>Background/Interests
+ 					<span class="chevron"></span>
+ 				</li>
+ 				<li data-step="3" data-name="template">
+ 					<span class="badge">3</span>Photos
+ 					<span class="chevron"></span>
+ 				</li>
+ 			</ul>
+ 		</div>
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_actors, "Favourite actor(s)?" , :class => '' %>
-			  		  <p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_actors, :class => 'form-control tokenize', :placeholder => 'E.g. Andy Griffith, Judy Garland, Betty Davis' %>
-			  		    </div>
-			  		</div>
+ 		<div class="actions">
+ 			<button type="button" class="btn btn-default btn-prev">
+ 				Previous</button>
+ 			<button type="button" class="btn btn-primary btn-next" data-last="Complete">Next</button>
+ 		</div>
+ 	<div class="step-content">
+ 	
+ 		<div class="step-pane active sample-pane alert" data-step="1">
+ 			
+ 			<div class="container-fluid">
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_activities, "What are #{@patient.first_name}'s favourite activities/hobbies?" , :class => '' %>
-			  		<p>If more than one, enter them separated by a comma.</p>
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'E.g. Knitting, gardening, fishing' %>
-			  		    </div>
-			  		</div>
+ 					<div class="column-left">
+ 						<div id="new-profile-image">
+ 							<div class="black-overlay">
+ 								<h4 class="center-content text-overlay">Create a profile for your loved one.</h4>
+ 							</div>
+ 						</div>
+ 					</div>
+ 					
+ 					<div class="column-right">
 
-			  		<div class="form-group">
-			  		  <%= f.label :favourite_animals, "What are #{@patient.first_name}'s favourite animals?" , :class => '' %>
-			  		
-			  		    <div class=""> 
-			  		      <%= f.text_field :favourite_animals, :class => 'form-control tokenize', :placeholder => 'E.g. Cats, dogs' %>
-			  		    </div>
-			  		</div>
+ 						<div class="center-content">
 
-			  		<div class="form-group">
-			  		  <%= f.label :additional_info, "Anything else to add (greatest accomplishments, favourite memories, etc)" , :class => '' %>
-			  		
-			  		    <div class=""> 
-			  		      <%= f.text_area :additional_info, :class => 'form-control', :placeholder => '' %>
-			  		    </div>
-			  		</div>
+ 							<div class="edit-profile">
 
+ 								<div class="form-group">
+ 								  <%= f.label :first_name, :class => '' %>
+ 								  <div class="">
+ 								    <%= f.text_field :first_name, :class => 'form-control' %>
+ 								  </div>
+ 								</div>
 
+ 								<div class="form-group">
+ 								  <%= f.label :last_name, :class => '' %>
+ 								  <div class="">
+ 								    <%= f.text_field :last_name, :class => 'form-control' %>
+ 								  </div>
+ 								</div>
 
+ 							</div>
+
+ 							<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
 
 
+ 						</div> 	
 
-			  		<div class="form-group">
-			  		  	<%= f.label "Please share some photos (family, favourite things, etc)", :class => '' %>
-			  		    <div class=""> 
-			  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
-			  		    </div>
-			  		</div>
+ 					</div>
+ 				
+ 			</div>
+ 		</div>
 
-			  		  
-			  		<div class="">
-			  		  <%= f.submit "Create Profile", :class => 'btn btn-primary form-button' %>
-			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-			  		              patients_path, :class => 'btn btn-default' %>
-			  		</div>
+ 		<div class="step-pane sample-pane alert" data-step="2">
 
-		  		  
+ 			<div class="container-fluid profile">
 
-		  		<% end %>
+ 					<div class="column-left">
+ 						<div id="describe-them-image">
+ 							<div class="black-overlay">
+ 								<div class="center-content text-overlay">
+ 									<h1 class="">Tell us more about them</h1><br>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 					
+ 					<div class="column-right">
+
+ 						<div class="edit-profile">
+ 					  		
+ 					  			<h3>Basic Information</h3>
+
+ 			  					<div class="form-group">
+ 			  					  <%= f.label :nickname, "Nickname?" , :class => '' %>
+ 			  					    <div class=""> 
+ 			  					      <%= f.text_field :nickname, :class => 'form-control', :placeholder => 'What is it?' %>
+ 			  					    </div>
+ 			  					</div>
 
 
-			</div>		
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :language, "Preferred language" , :class => '' %>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :language, :class => 'form-control', :placeholder => 'E.g. Spanish' %>
+ 			  						    </div>
+ 			  						</div>
 
-		</div>
-	
-</div>
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :birthplace, "Birthplace?" , :class => '' %>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :birthplace, :class => 'form-control', :placeholder => 'City, Country.' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :home_base, "Where did they live for most of their life (if different from above)?" , :class => '' %>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :home_base, :class => 'form-control', :placeholder => 'City, Country.' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :spouse_name, "If they were married, what was their spouse's name?" , :class => '' %>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :spouse_name, :class => 'form-control', :placeholder => 'What is/was their name?' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :children, "Any children? If so, what are their names?" , :class => '' %>
+ 			  						  <p>If more than one, enter the names separated by a comma.</p>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :children, :class => 'form-control tokenize', :placeholder => 'E.g. Jane, Andrew, Simon' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :grandchildren, "What about grandchildren?" , :class => '' %>
+ 			  						  <p>If more than one, enter the names separated by a comma.</p>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :grandchildren, :class => 'form-control tokenize', :placeholder => 'E.g. Deacon, Oona, June' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+ 			  						  <%= f.label :occupation, "What was their primary occupation?" , :class => '' %>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :occupation, :class => 'form-control', :placeholder => 'E.g. Painter' %>
+ 			  						    </div>
+ 			  						</div>
+
+ 			  						<div class="form-group">
+
+ 			  						  <%= f.label :pets, "Any pets?" , :class => '' %>
+ 			  						<p>If more than one, enter them separated by a comma.</p>
+ 			  						    <div class=""> 
+ 			  						      <%= f.text_field :pets, :class => 'form-control tokenize', :placeholder => 'E.g. Sparky the Dog' %>
+ 			  						    </div>
+ 			  						</div>
+ 			  			  		
+ 			  			  		<h3>Interests & Hobbies</h3>
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_music, "What is their favourite type of music?" , :class => '' %>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
+
+ 			  			  		    </div>
+ 			  			  		</div>
+
+
+ 			  			  		<div class="form-group row">
+ 			  			  			<label class="profile">Favourite Song</label>
+ 			  			  			<div class="col-sm-12 song-fields">
+ 			  				  			<%= f.fields_for :songs, @song do |song_fields| %>
+
+ 			  							<div class="col-sm-1">
+ 			  								<%= song_fields.label :title, "Title" , :class => 'subtitle' %>
+ 			  							</div>
+
+ 			  							<div class="col-sm-11">
+ 			  								<%= song_fields.text_field :title, :class => 'form-control', :placeholder => 'Song name' %>
+ 			  							</div><br>
+
+ 			  							<div class="col-sm-1">
+ 			  								<%= song_fields.label :artist, "Artist" , :class => 'subtitle' %>
+ 			  							</div>
+
+ 			  							<div class="col-sm-11">
+ 			  								<%= song_fields.text_field :artist, :class => 'form-control', :placeholder => "Song's artist" %>
+ 			  							</div>
+
+ 			  							<div class="col-sm-1">
+ 			  								<%= song_fields.label :url, "Link" , :class => 'subtitle' %>
+ 			  							</div>
+
+ 			  							<div class="col-sm-11">
+ 			  								<%= song_fields.text_field :url, :class => 'form-control', :placeholder => "YouTube or other" %>	
+ 			  							</div>    		
+
+ 			  				  		    <% end %>
+
+ 			  						</div>
+ 			  			  			
+ 			  			  		</div>
+
+
+
+ 			  			  		<div class="form-group">
+
+ 			  			  		  <%= f.label :favourite_sports, "Does your love one have a favourite sport?" , :class => '' %>
+ 			  			  		  <p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_sports, :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_radio, "Favourite radio show?" , :class => '' %>
+ 			  			  		  <p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_radio, :class => 'form-control tokenize', :placeholder => 'E.g. CBC, Car Talk' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_movie_tv, "Favourite movies or tv shows?" , :class => '' %>
+ 			  			  		  <p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_movie_tv, :class => 'form-control tokenize', :placeholder => 'E.g. Hey Lucy, Leave it to Beaver' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_childhood_games, "Favourite games to play as a child?" , :class => '' %>
+ 			  			  		  <p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_childhood_games, :class => 'form-control tokenize', :placeholder => 'E.g. Checkers, Hopscotch' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_actors, "Favourite actor(s)?" , :class => '' %>
+ 			  			  		  <p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_actors, :class => 'form-control tokenize', :placeholder => 'E.g. Andy Griffith, Judy Garland, Betty Davis' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
+ 			  			  		<p>If more than one, enter them separated by a comma.</p>
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'E.g. Knitting, gardening, fishing' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
+ 			  			  		
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_field :favourite_animals, :class => 'form-control tokenize', :placeholder => 'E.g. Cats, dogs' %>
+ 			  			  		    </div>
+ 			  			  		</div>
+
+ 			  			  		<div class="form-group">
+ 			  			  		  <%= f.label :additional_info, "Anything else to add (greatest accomplishments, favourite memories, etc)" , :class => '' %>
+ 			  			  		
+ 			  			  		    <div class=""> 
+ 			  			  		      <%= f.text_area :additional_info, :class => 'form-control', :placeholder => '' %>
+ 			  			  		    </div>
+ 			  			  		</div> 
+
+ 			  			  		
+ 			  			  		<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+ 			  			  			
+ 			  			</div>
+ 			  		</div>
+   			</div>
+ 		</div>
+ 		<div class="step-pane sample-pane alert" data-step="3">
+
+ 			<div class="container-fluid">
+
+ 					<div class="form-group">
+ 						<%= f.label "Please share some photos (family, favourite things, etc)" %>
+ 				  		    <div class=""> 
+ 				  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
+ 				  		    </div>
+ 			  		</div>
+
+ 			  		<div class="">
+ 			  		  <%= f.submit "Create Profile", :class => 'btn btn-primary form-button' %>
+ 			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+ 			  		              patients_path, :class => 'btn btn-default' %>
+ 			  		</div>
+
+ 			  		<% @patient.photos.each do |photo| %>
+ 			  		  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+	 			  		  <%= link_to patient_photo_path(@patient, photo), :method => :delete do %>
+						  		<i class="fa fa-trash"></i>
+						  <% end %>
+ 			  		<% end %>
+
+
+ 			</div>
+
+ 		</div>
+ 		
+ 		
+ 	</div>
+ 	<% end %>
+ </div>
+
+
+

@@ -17,43 +17,16 @@
 //= require_tree .
 //= require fancybox
 //= require bootstrap-tokenfield
+//= require fuelux.js
 
 
 
 $(document).ready(function() {
 
-  // $("a.fancybox").fancybox();
-
-  /*$(".fancybox")
-      .attr('rel', 'gallery')
-      .fancybox({
-          type: 'iframe',
-          autoSize : false,
-          arrows: false,
-          beforeLoad : function() {         
-              if ($(this.element).attr('id') == 'popup-sign-up' || 'popup-sign-in') {
-                  this.width  = 500;
-                  this.height = 500;
-              } else {
-                  this.width  = 200;
-                  this.height = 500;
-              }
-          }
-      });
-
-    $('.submit_button').click(function(){
-    	 parent.$.fancybox.close();
-    }); */
 
   $("input.tokenize").tokenfield();
-  // $(".g img").hide()
 
-  // setInterval(function(){
-  //    //fade in the random index of the image collection
-  //    var randomnumber=Math.floor(Math.random()*$(".g").children().length);
-  //    $(".g img:eq(" + randomnumber + ")").fadeIn(100);     
-  //   }, 10);
-
+  var wizard = $('#myWizard').wizard();
 
 
 

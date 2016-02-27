@@ -42,6 +42,13 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 # Bootstrap tokenfield
 gem 'bootstrap_tokenfield_rails'
 
+# FuelUX
+gem "fuelux-rails"
+
+# Less (for FuelUX)
+gem 'less-rails', '~> 2.7.0'
+gem 'therubyracer'
+
 # Devise authentication
 gem 'devise'
 

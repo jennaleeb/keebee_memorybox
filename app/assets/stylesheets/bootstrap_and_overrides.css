@@ -75,3 +75,29 @@
     margin-bottom: 1em;
   }
 
+/*FuleUX Stuff*/
+
+.fuelux .wizard {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.fuelux .wizard .step-content {
+  padding: 0;
+}
+
+.step-content {
+  height: 100%;
+}
+
+.alert {
+  height: 100%;
+  top: 0;
+}
+
+.alert h4 {
+  color: white;
+}
+
+

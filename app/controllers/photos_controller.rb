@@ -56,7 +56,7 @@ class PhotosController < ApplicationController
   def destroy
     @patient = Patient.find(params[:patient_id])
     if @photo.destroy
-      redirect_to patient_path(@patient)
+      redirect_to edit_patient_path(@patient)
     end
     
   end

@@ -33,8 +33,13 @@ class PatientsController < ApplicationController
     @song = @patient.songs.new
 
       if @patient.save
+        redirect_to patient_path(@patient)
 
-        redirect_to edit_patient_path(@patient)
+        if params[:images]
+          params[:images].each do |image|
+            @photo = @patient.photos.create(image: image)
+          end
+        end
         
       end
   end
