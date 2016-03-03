@@ -2,6 +2,7 @@ require 'fileutils'
 
 class Photo < ActiveRecord::Base
 	belongs_to :patient
+	has_many :tags, dependent: :destroy
 	has_attached_file :image,
 	                  :styles => {
 	                        :thumb => "100x100#",

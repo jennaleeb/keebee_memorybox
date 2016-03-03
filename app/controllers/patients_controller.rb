@@ -11,7 +11,6 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
-   
   end
 
   # GET /patients/new
@@ -22,6 +21,7 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+    @tag = Tag.new
 
   end
 
@@ -32,8 +32,10 @@ class PatientsController < ApplicationController
     @patient.user_id = current_user.id
     @song = @patient.songs.new
 
+
       if @patient.save
-        redirect_to patient_path(@patient)
+
+        redirect_to edit_patient_path(@patient)
 
         if params[:images]
           params[:images].each do |image|
@@ -50,14 +52,14 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
 
     if @patient.update(patient_params)
-      
+
       if params[:images]
         params[:images].each do |image|
           @photo = @patient.photos.create(image: image)
         end
       end
       
-      redirect_to patient_path
+      redirect_to edit_patient_path(@patient)
     end
     
     # respond_to do |format|

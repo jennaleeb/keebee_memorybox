@@ -3,6 +3,7 @@ class PhotosController < ApplicationController
 
   # GET /photos
   # GET /photos.json
+
   def index
     @photos = Photo.all
   end
@@ -20,6 +21,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    @tag = Tag.new
   end
 
   # POST /photos

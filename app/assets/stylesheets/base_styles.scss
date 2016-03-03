@@ -55,6 +55,7 @@ a:link, a:visited {
 
 .text-overlay {
 	color: white;
+	height: 8em;
 }
 
 .center-content:before {
@@ -73,9 +74,15 @@ a:link, a:visited {
 }
 
 .center-vertical {
-	position: relative;
 	width: 100%;
-	margin: 0 1em 0 1em;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: left;
+}
+
+.center-horizontal {
+	text-align: center;
 }
 
 
@@ -90,11 +97,10 @@ a:link, a:visited {
 
 
 .column-right {
-	position: fixed !important;
 	position: absolute;
-	top: 6em;
+	top: 0em;
 	right: 0;
-	bottom: 2em;
+	bottom: 8em;
 	overflow-y: scroll;
 	width: 50%;
 }
@@ -103,7 +109,6 @@ a:link, a:visited {
 	.column-left {
 		height: 35%;
 		width: 100%;
-		margin-top: 15em;
 	}
 
 	.column-right {

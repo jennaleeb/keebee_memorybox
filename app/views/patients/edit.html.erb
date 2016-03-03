@@ -15,11 +15,15 @@
  					<span class="chevron"></span>
  				</li>
  				<li data-step="2">
- 					<span class="badge">2</span>Background/Interests
+ 					<span class="badge">2</span>Background
  					<span class="chevron"></span>
  				</li>
- 				<li data-step="3" data-name="template">
- 					<span class="badge">3</span>Photos
+ 				<li data-step="3">
+ 					<span class="badge">3</span>Interests
+ 					<span class="chevron"></span>
+ 				</li>
+ 				<li data-step="4" data-name="template">
+ 					<span class="badge">4</span>Photos
  					<span class="chevron"></span>
  				</li>
  			</ul>
@@ -39,7 +43,10 @@
  					<div class="column-left">
  						<div id="new-profile-image">
  							<div class="black-overlay">
- 								<h4 class="center-content text-overlay">Create a profile for your loved one.</h4>
+ 								<div class="center-content">
+ 									<h4 class="text-overlay">Create a profile for your loved one.</h4>
+ 								</div>
+ 								
  							</div>
  						</div>
  					</div>
@@ -64,9 +71,11 @@
  								  </div>
  								</div>
 
+ 								<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+
  							</div>
 
- 							<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+ 							
 
 
  						</div> 	
@@ -163,127 +172,154 @@
  			  						      <%= f.text_field :pets, :class => 'form-control tokenize', :placeholder => 'E.g. Sparky the Dog' %>
  			  						    </div>
  			  						</div>
- 			  			  		
- 			  			  		<h3>Interests & Hobbies</h3>
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_music, "What is their favourite type of music?" , :class => '' %>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
 
- 			  			  		    </div>
- 			  			  		</div>
-
-
- 			  			  		<div class="form-group row">
- 			  			  			<label class="profile">Favourite Song</label>
- 			  			  			<div class="col-sm-12 song-fields">
- 			  				  			<%= f.fields_for :songs, @song do |song_fields| %>
-
- 			  							<div class="col-sm-1">
- 			  								<%= song_fields.label :title, "Title" , :class => 'subtitle' %>
- 			  							</div>
-
- 			  							<div class="col-sm-11">
- 			  								<%= song_fields.text_field :title, :class => 'form-control', :placeholder => 'Song name' %>
- 			  							</div><br>
-
- 			  							<div class="col-sm-1">
- 			  								<%= song_fields.label :artist, "Artist" , :class => 'subtitle' %>
- 			  							</div>
-
- 			  							<div class="col-sm-11">
- 			  								<%= song_fields.text_field :artist, :class => 'form-control', :placeholder => "Song's artist" %>
- 			  							</div>
-
- 			  							<div class="col-sm-1">
- 			  								<%= song_fields.label :url, "Link" , :class => 'subtitle' %>
- 			  							</div>
-
- 			  							<div class="col-sm-11">
- 			  								<%= song_fields.text_field :url, :class => 'form-control', :placeholder => "YouTube or other" %>	
- 			  							</div>    		
-
- 			  				  		    <% end %>
-
- 			  						</div>
- 			  			  			
- 			  			  		</div>
-
-
-
- 			  			  		<div class="form-group">
-
- 			  			  		  <%= f.label :favourite_sports, "Does your love one have a favourite sport?" , :class => '' %>
- 			  			  		  <p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_sports, :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_radio, "Favourite radio show?" , :class => '' %>
- 			  			  		  <p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_radio, :class => 'form-control tokenize', :placeholder => 'E.g. CBC, Car Talk' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_movie_tv, "Favourite movies or tv shows?" , :class => '' %>
- 			  			  		  <p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_movie_tv, :class => 'form-control tokenize', :placeholder => 'E.g. Hey Lucy, Leave it to Beaver' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_childhood_games, "Favourite games to play as a child?" , :class => '' %>
- 			  			  		  <p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_childhood_games, :class => 'form-control tokenize', :placeholder => 'E.g. Checkers, Hopscotch' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_actors, "Favourite actor(s)?" , :class => '' %>
- 			  			  		  <p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_actors, :class => 'form-control tokenize', :placeholder => 'E.g. Andy Griffith, Judy Garland, Betty Davis' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
- 			  			  		<p>If more than one, enter them separated by a comma.</p>
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'E.g. Knitting, gardening, fishing' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
- 			  			  		
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_field :favourite_animals, :class => 'form-control tokenize', :placeholder => 'E.g. Cats, dogs' %>
- 			  			  		    </div>
- 			  			  		</div>
-
- 			  			  		<div class="form-group">
- 			  			  		  <%= f.label :additional_info, "Anything else to add (greatest accomplishments, favourite memories, etc)" , :class => '' %>
- 			  			  		
- 			  			  		    <div class=""> 
- 			  			  		      <%= f.text_area :additional_info, :class => 'form-control', :placeholder => '' %>
- 			  			  		    </div>
- 			  			  		</div> 
-
- 			  			  		
- 			  			  		<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+ 			  						<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
  			  			  			
  			  			</div>
  			  		</div>
    			</div>
  		</div>
+
  		<div class="step-pane sample-pane alert" data-step="3">
+
+ 			<div class="container-fluid profile">
+
+ 					<div class="column-left">
+ 						<div id="describe-them-image">
+ 							<div class="black-overlay">
+ 								<div class="center-content text-overlay">
+ 									<h1 class="">Tell us more about them</h1><br>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 					
+ 					<div class="column-right">
+
+ 						<div class="edit-profile">
+					  		<h3>Interests & Hobbies</h3>
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_music, "What is their favourite type of music?" , :class => '' %>
+					  		    <div class=""> 
+					  		      <%= f.select(:favourite_music, [ 'Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing' ], {:prompt => 'Select One'}, {:class => "form-control"}) %>
+
+					  		    </div>
+					  		</div>
+
+
+					  		<div class="form-group row">
+					  			<label class="profile">Favourite Song</label>
+					  			<div class="col-sm-12 song-fields">
+						  			<%= f.fields_for :songs, @song do |song_fields| %>
+
+									<div class="col-sm-1">
+										<%= song_fields.label :title, "Title" , :class => 'subtitle' %>
+									</div>
+
+									<div class="col-sm-11">
+										<%= song_fields.text_field :title, :class => 'form-control', :placeholder => 'Song name' %>
+									</div><br>
+
+									<div class="col-sm-1">
+										<%= song_fields.label :artist, "Artist" , :class => 'subtitle' %>
+									</div>
+
+									<div class="col-sm-11">
+										<%= song_fields.text_field :artist, :class => 'form-control', :placeholder => "Song's artist" %>
+									</div>
+
+									<div class="col-sm-1">
+										<%= song_fields.label :url, "Link" , :class => 'subtitle' %>
+									</div>
+
+									<div class="col-sm-11">
+										<%= song_fields.text_field :url, :class => 'form-control', :placeholder => "YouTube or other" %>	
+									</div>    		
+
+						  		    <% end %>
+
+								</div>
+					  			
+					  		</div>
+
+
+
+					  		<div class="form-group">
+
+					  		  <%= f.label :favourite_sports, "Does your love one have a favourite sport?" , :class => '' %>
+					  		  <p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_sports, :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_radio, "Favourite radio show?" , :class => '' %>
+					  		  <p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_radio, :class => 'form-control tokenize', :placeholder => 'E.g. CBC, Car Talk' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_movie_tv, "Favourite movies or tv shows?" , :class => '' %>
+					  		  <p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_movie_tv, :class => 'form-control tokenize', :placeholder => 'E.g. Hey Lucy, Leave it to Beaver' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_childhood_games, "Favourite games to play as a child?" , :class => '' %>
+					  		  <p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_childhood_games, :class => 'form-control tokenize', :placeholder => 'E.g. Checkers, Hopscotch' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_actors, "Favourite actor(s)?" , :class => '' %>
+					  		  <p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_actors, :class => 'form-control tokenize', :placeholder => 'E.g. Andy Griffith, Judy Garland, Betty Davis' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
+					  		<p>If more than one, enter them separated by a comma.</p>
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'E.g. Knitting, gardening, fishing' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
+					  		
+					  		    <div class=""> 
+					  		      <%= f.text_field :favourite_animals, :class => 'form-control tokenize', :placeholder => 'E.g. Cats, dogs' %>
+					  		    </div>
+					  		</div>
+
+					  		<div class="form-group">
+					  		  <%= f.label :additional_info, "Anything else to add (greatest accomplishments, favourite memories, etc)" , :class => '' %>
+					  		
+					  		    <div class=""> 
+					  		      <%= f.text_area :additional_info, :class => 'form-control', :placeholder => '' %>
+					  		    </div>
+					  		</div> 
+
+					  		
+					  		<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+ 						</div>
+
+ 					</div>
+
+			</div>
+
+		</div>
+
+ 		<div class="step-pane sample-pane alert" data-step="4">
 
  			<div class="container-fluid">
 
@@ -295,26 +331,74 @@
  			  		</div>
 
  			  		<div class="">
- 			  		  <%= f.submit "Create Profile", :class => 'btn btn-primary form-button' %>
+ 			  		  <%= f.submit "Update Profile", :class => 'btn btn-primary form-button' %>
  			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
  			  		              patients_path, :class => 'btn btn-default' %>
  			  		</div>
 
- 			  		<% @patient.photos.each do |photo| %>
- 			  		  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
-	 			  		  <%= link_to patient_photo_path(@patient, photo), :method => :delete do %>
-						  		<i class="fa fa-trash"></i>
-						  <% end %>
  			  		<% end %>
 
-
  			</div>
+
+	  		<div class="photo-holder">
+
+		  		<% @patient.photos.each do |photo| %>
+			  		<div class="photo-tile">
+			  			<%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+
+				  		  <%= link_to patient_photo_path(@patient, photo), :class => "delete-image", :method => :delete do %>
+					  		<i class="fa fa-trash"></i>
+					  <% end %>
+
+					  <% if photo.tags != nil %>
+					  
+					  <ul id="photo-container-<%= photo.id %>">
+					  	<% photo.tags.each do |tag| %>
+					  		<li><%= tag.name %></li>
+					  	<% end %>
+					  	</ul>
+					  <% end %>
+
+
+					  <div class="input-group input-append dropdown combobox" data-initialize="combobox">
+
+					  	<%= form_for(Tag.new) do |f| %>
+
+					  	<div class="combobox-container">
+
+					  		<%= hidden_field_tag "tag[photo_id]", photo.id %>
+					  		
+
+					  		<input type="text" name="tag[name]" list="tags" class="form-control tag-name" autocomplete="off">
+					  		<datalist id="tags">
+					  		  	<option value="Family">
+					  		  	<option value="Pets">
+					  			<option value="Activities">
+				  		  		<option value="TV/Movies/Books">
+					  		</datalist>
+
+					  	</div>
+					  		
+					  			<%= f.submit "Tag", :class => "btn btn-default tag-button" %>
+
+					  	<% end %>
+
+					  </div>
+					  
+					  		
+
+					
+			  		</div>
+				<% end %>
+	  		</div>
 
  		</div>
  		
  		
  	</div>
- 	<% end %>
+ 	
+
+
  </div>
 
 

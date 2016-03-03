@@ -41,7 +41,7 @@
 .profile h3 {
 	border-bottom: solid 1px #cfcfcf;
     padding-bottom: 0.2em;
-    margin: 0.8em 0;
+    margin: 0.5em 0 1em 0;
 }
 
 .profile label {
@@ -126,9 +126,11 @@
 	margin-bottom: 1em;
 }
 
-.edit-profile {
+.edit-profile,
+.profile-content {
 	padding: 2em;
 	top: 6em;
+	text-align: left;
 }
 
 #form-in-wizard {
@@ -136,9 +138,17 @@
 	
 }
 
+.step-content {
+	height: 100vh;
+}
+
 /*Patient Show Page*/
 
 .table-head {
 	width: 40%;
 	font-weight: bold;
+}
+
+.tag-form {
+	
 }

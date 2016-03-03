@@ -55,6 +55,8 @@ gem 'devise'
 # Fancybox lightbox
 gem 'fancybox2-rails'
 
+# Pry for debugging (like IRB)
+gem 'pry'
 
 #Font awesome
 gem 'font-awesome-sass'

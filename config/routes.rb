@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :photos
   end
 
+  resources :tags
+
   #get 'photos/new?:patient_id' => 'photos#create'
 
   # The priority is based upon order of creation: first created -> highest priority.

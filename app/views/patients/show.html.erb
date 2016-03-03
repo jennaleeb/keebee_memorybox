@@ -1,201 +1,273 @@
-<div class="container-fluid profile">
+ <div class="fuelux">
 
-		<div class="column-left">
-			<div id="show-profile-image">
-				<div class="black-overlay">
-					<div class="center-content text-overlay">
-					  <h2 class=""><%= @patient.first_name %>'s</h2><br>
-					  <h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+ 	<div class="wizard" data-initialize="wizard" id="myWizard">
+
+ 		<div class="steps-container">
+ 			<ul class="steps">
+ 				<li data-step="1" data-name="campaign" class="active">
+ 					<span class="badge">1</span>Profile Information
+ 					<span class="chevron"></span>
+ 				</li>
+
+ 				<li data-step="2" data-name="template">
+ 					<span class="badge">2</span>Photos
+ 					<span class="chevron"></span>
+ 				</li>
+ 			</ul>
+ 		</div>
+
+ 		<div class="actions">
+ 			<button type="button" class="btn btn-default btn-prev">
+ 				Previous</button>
+ 			<button type="button" class="btn btn-primary btn-next" data-last="Complete">Next</button>
+ 		</div>
+ 	<div class="step-content">
+ 	
+ 		<div class="step-pane active sample-pane alert" data-step="1">
+ 			
+ 			<div class="container-fluid profile">
+
+				<div class="column-left">
+					<div id="show-profile-image">
+						<div class="black-overlay">
+							<div class="center-content text-overlay">
+							  <h2 class=""><%= @patient.first_name %>'s</h2><br>
+							  <h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		
-		<div class="column-right">
+				
+				<div class="column-right">
 
-			<div class="center-vertical">
+					<div class="profile-content">
+						<h3>Basic Information</h3>
+						<table class="table">
+							<tr>
+								<td class="table-head">Nickname</td>
+								<td><%= @patient.nickname %></td>
+							</tr>
 
-				<div class="">
-					<h3>Basic Information</h3>
-					<table class="table">
-						<tr>
-							<td class="table-head">Nickname</td>
-							<td><%= @patient.nickname %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Preferred Language</td>
+								<td><%= @patient.language %></td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Preferred Language</td>
-							<td><%= @patient.language %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Birthplace</td>
+								<td><%= @patient.birthplace %></td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Birthplace</td>
-							<td><%= @patient.birthplace %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Hometown</td>
+								<td><%= @patient.home_base %></td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Hometown</td>
-							<td><%= @patient.home_base %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Spouse Name</td>
+								<td><%= @patient.spouse_name %></td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Spouse Name</td>
-							<td><%= @patient.spouse_name %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Children</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.children)).each do |child| %>
+										<li><%= child.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Children</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.children)).each do |child| %>
-									<li><%= child.titlecase %></li>
+							<tr>
+								<td class="table-head">Grandchildren</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.grandchildren)).each do |child| %>
+										<li><%= child.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="table-head">Occupation</td>
+								<td><%= @patient.occupation%></td>
+							</tr>
+
+							<tr>
+								<td class="table-head">Pets</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.pets)).each do |pet| %>
+										<li><%= pet.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
+
+						</table>
+
+						<h3>Interests & Hobbies</h3>
+						
+						<table class="table">
+							<tr>
+								<td class="table-head">Favourite Song</td>
+								<td><% @patient.songs.each do |song| %>
+										<%= song.title %>
 									<% end %>
-								</ul>
-							</td>
-						</tr>
 
-						<tr>
-							<td class="table-head">Grandchildren</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.grandchildren)).each do |child| %>
-									<li><%= child.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
+								</td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Occupation</td>
-							<td><%= @patient.occupation%></td>
-						</tr>
+							<tr>
+								<td class="table-head">Favourite Sports</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_sports)).each do |sport| %>
+										<li><%= sport.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Pets</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.pets)).each do |pet| %>
-									<li><%= pet.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
+							<tr>
+								<td class="table-head">Favourite Radio</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_radio)).each do |radio| %>
+										<li><%= radio.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-					</table>
+							<tr>
+								<td class="table-head">Favourite TV/Movies</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_movie_tv)).each do |title| %>
+										<li><%= title.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-					<h3>Interests & Hobbies</h3>
-					
-					<table class="table">
-						<tr>
-							<td class="table-head">Favourite Song</td>
-							<td><% @patient.songs.each do |song| %>
-									<%= song.title %>
-								<% end %>
+							<tr>
+								<td class="table-head">Favourite Childhood Games</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_childhood_games)).each do |game| %>
+										<li><%= game.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-							</td>
-						</tr>
+							<tr>
+								<td class="table-head">Favourite Actors</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_actors)).each do |actor| %>
+										<li><%= actor.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Favourite Sports</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_sports)).each do |sport| %>
-									<li><%= sport.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
+							<tr>
+								<td class="table-head">Favourite Animals</td>
+								<td>
+									<ul>
+										<% Array(@patient.split_list(@patient.favourite_animals)).each do |animal| %>
+										<li><%= animal.titlecase %></li>
+										<% end %>
+									</ul>
+								</td>
+							</tr>
 
-						<tr>
-							<td class="table-head">Favourite Radio</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_radio)).each do |radio| %>
-									<li><%= radio.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="table-head">Favourite TV/Movies</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_movie_tv)).each do |title| %>
-									<li><%= title.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="table-head">Favourite Childhood Games</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_childhood_games)).each do |game| %>
-									<li><%= game.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="table-head">Favourite Actors</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_actors)).each do |actor| %>
-									<li><%= actor.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="table-head">Favourite Animals</td>
-							<td>
-								<ul>
-									<% Array(@patient.split_list(@patient.favourite_animals)).each do |animal| %>
-									<li><%= animal.titlecase %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="table-head">Additional Information</td>
-							<td><%= @patient.additional_info %></td>
-						</tr>
+							<tr>
+								<td class="table-head">Additional Information</td>
+								<td><%= @patient.additional_info %></td>
+							</tr>
 
 
-					</table>
-
-					<h3>Photos</h3>
-
-					  <div class="photo-container">
-
-					  	<% @patient.photos.each do |photo| %>
-
-					  	  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+						</table>
+					</div>
 
 
-					  	  <%= link_to patient_photo_path(@patient, photo),
-					  	  			:method => :delete do %>
-					  	      <i class="fa fa-trash"></i>
-					  	  <% end %>
+				</div> 
 
-					  	<% end %>
+ 			</div>
 
-					  </div>
+ 		</div>
 
-					  
-					 
-					   
-					  <button class="btn btn-primary"><%= link_to 'Edit Profile', edit_patient_path(@patient) %></button>
+ 		<div class="step-pane sample-pane alert" data-step="2">
 
-				</div>
+ 			<div class="container-fluid">
 
-			</div>		
-			
-		</div>
-	
-</div>
+
+			  		<% @patient.photos.each do |photo| %>
+				  		<div class="photo-tile">
+				  			<%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+
+					  		  <%= link_to patient_photo_path(@patient, photo), :class => "delete-image", :method => :delete do %>
+						  		<i class="fa fa-trash"></i>
+						  <% end %>
+
+						  <% if photo.tags != nil %>
+						  
+						  <ul id="photo-container-<%= photo.id %>">
+						  	<% photo.tags.each do |tag| %>
+						  		<li><%= tag.name %></li>
+						  	<% end %>
+						  	</ul>
+						  <% end %>
+
+
+						  <div class="input-group input-append dropdown combobox" data-initialize="combobox">
+
+						  	<%= form_for(Tag.new) do |f| %>
+
+						  	<div class="combobox-container">
+
+						  		<%= hidden_field_tag "tag[photo_id]", photo.id %>
+						  		
+
+						  		<input type="text" name="tag[name]" list="tags" class="form-control tag-name" autocomplete="off">
+						  		<datalist id="tags">
+						  		  	<option value="Family">
+						  		  	<option value="Pets">
+						  			<option value="Activities">
+					  		  		<option value="TV/Movies/Books">
+						  		</datalist>
+
+						  		<%= f.submit "Tag", :class => "btn btn-default tag-button" %>
+
+						  	<% end %>
+
+
+
+						  	</div>
+						  		
+
+
+						  </div>
+						  		
+						  		
+						  		
+
+						
+				  		</div>
+					<% end %>
+
+	  		</div>
+
+ 		</div>
+ 		
+ 		
+ 	</div>
+ 	
+
+
+ </div>

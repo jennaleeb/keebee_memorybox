@@ -14,12 +14,10 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require_tree .
 //= require fancybox
 //= require bootstrap-tokenfield
 //= require fuelux.js
-
-
+//= require_tree .
 
 $(document).ready(function() {
 
@@ -27,7 +25,6 @@ $(document).ready(function() {
   $("input.tokenize").tokenfield();
 
   var wizard = $('#myWizard').wizard();
-
 
 
 })

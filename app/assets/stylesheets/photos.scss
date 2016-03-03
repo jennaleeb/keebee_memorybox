@@ -9,3 +9,88 @@
 .media-object {
 	display: inline-block;
 }
+
+.photo-holder{
+	position: absolute;
+    top: 10em;
+    right: 0;
+    bottom: 10em;
+    overflow-y: scroll;
+    width: 100%;
+    text-align: center;
+}
+
+.photo-tile {
+	margin: 1em;
+	background-color: #eee;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	display: inline-block;
+	position: relative;
+	width: 22%;
+
+	img {
+		width: 16em;
+		text-align: center;
+		margin: 1em; 
+	}
+
+	.delete-image {
+		position: absolute;
+		top: 0.5em;
+		right: 1em;
+		content: "";
+		background-color: white;
+		padding: 0.2em 0.5em;
+		border-radius: 50%;
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	}
+
+	ul {
+		width: 80%;
+		padding: 0;
+		display: block;
+		margin-left: 2em;
+	}
+
+	li {
+		list-style: none;
+		float: left;
+		padding: 0.1em 0.3em;
+		background-color: white;
+		border: solid 1px #e6e6e6;
+		
+	}
+
+	
+}
+
+.combobox {
+	width: 18em;
+	margin: 1em;
+	padding-top: 0.5em;
+}
+
+.input-group-btn {
+	width: 10px
+}
+
+.combo-dropdown {
+	width: 213px;
+}
+
+.tag-button {
+	text-align: center;
+	background-color: cornflowerblue;
+	border: 0px;
+	color: white;
+	height: 34px;
+}
+
+.tag-button:hover, .tag-button:active {
+	background-color: cornflowerblue;
+	color: white;
+}
+
+.input-group .form-control {
+	width: 80%;
+}

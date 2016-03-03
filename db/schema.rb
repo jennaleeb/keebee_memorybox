@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215165541) do
+ActiveRecord::Schema.define(version: 20160228210426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20160215165541) do
 
   add_index "songs", ["patient_id"], name: "index_songs_on_patient_id", using: :btree
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["photo_id"], name: "index_tags_on_photo_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -86,4 +95,5 @@ ActiveRecord::Schema.define(version: 20160215165541) do
 
   add_foreign_key "patients", "users"
   add_foreign_key "songs", "patients"
+  add_foreign_key "tags", "photos"
 end
