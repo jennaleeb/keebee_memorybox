@@ -80,7 +80,10 @@
 
 .tag-button {
 	text-align: center;
-	background-color: cornflowerblue;
+	background-color: cornflowerblue !important;
+	cursor: pointer !important;
+	pointer-events: all !important;
+	opacity: 1 !important;
 	border: 0px;
 	color: white;
 	height: 34px;
