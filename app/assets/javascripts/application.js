@@ -17,6 +17,7 @@
 //= require fancybox
 //= require bootstrap-tokenfield
 //= require tags.js
+//= require_tree .
 //= require_self
 
 $(document).ready(function() {
