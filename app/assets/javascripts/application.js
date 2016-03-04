@@ -19,6 +19,7 @@
 //= require fuelux.js
 //= require tags.js
 //= require_tree .
+//= require_self
 
 $(document).ready(function() {
 
