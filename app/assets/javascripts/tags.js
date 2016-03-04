@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+	$(".tag_button").removeClass("disabled")
+
 	$(".new_tag").submit(function( event ) {
 		event.preventDefault();
 
