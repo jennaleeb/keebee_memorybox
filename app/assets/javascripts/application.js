@@ -18,7 +18,7 @@
 //= require bootstrap-tokenfield
 //= require fuelux.js
 //= require tags
-//= require_self
+//= require_tree .
 
 $(document).ready(function() {
 
