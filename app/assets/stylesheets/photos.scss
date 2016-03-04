@@ -80,20 +80,13 @@
 
 .tag-button {
 	text-align: center;
-	background-color: cornflowerblue !important;
-	cursor: pointer !important;
-	pointer-events: all !important;
-	opacity: 1 !important;
+	background-color: cornflowerblue ;
+	cursor: pointer;
+	pointer-events: all;
+	opacity: 1 ;
 	border: 0px;
 	color: white;
 	height: 34px;
-}
-
-.btn-default.disabled {
-	background-color: cornflowerblue !important;
-	cursor: pointer !important;
-	pointer-events: all !important;
-	opacity: 1 !important;
 }
 
 .tag-button:hover, .tag-button:active {

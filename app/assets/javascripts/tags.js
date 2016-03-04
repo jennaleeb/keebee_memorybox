@@ -1,7 +1,18 @@
 
 $(document).ready(function(){
 
-	$(".tag_button").removeClass("disabled")
+	$("input.tag-button:submit").css('pointer-events', 'all');
+	$("input.tag-button:submit").css('cursor', 'pointer');
+	$("input.tag-button:submit").css('background-color', 'cornflowerblue');
+	$("input.tag-button:submit").css('opacity', '1');
+
+	// $("input.tag-button:submit").css({
+	// 	pointer-events: all,
+	// 	cursor: pointer,
+	// 	background-color: cornflowerblue,
+	// 	opacity: 1,
+	// });
+	
 
 	$(".new_tag").submit(function( event ) {
 		event.preventDefault();
