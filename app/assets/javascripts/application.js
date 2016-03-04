@@ -16,8 +16,8 @@
 //= require turbolinks
 //= require fancybox
 //= require bootstrap-tokenfield
-//= require tags.js
-//= require_tree .
+//= require fuelux.js
+//= require tags
 //= require_self
 
 $(document).ready(function() {
