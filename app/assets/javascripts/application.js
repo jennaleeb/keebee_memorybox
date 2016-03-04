@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require turbolinks
 //= require fancybox
 //= require bootstrap-tokenfield
+//= require twitter/bootstrap
 //= require fuelux.js
 //= require tags.js
 //= require_tree .
