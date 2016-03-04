@@ -17,7 +17,7 @@
 //= require fancybox
 //= require bootstrap-tokenfield
 //= require fuelux.js
-//= require tags
+//= require tags.js
 //= require_tree .
 
 $(document).ready(function() {
