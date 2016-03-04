@@ -10,17 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
  *= require fancybox
  *= require bootstrap-tokenfield
+ *= require font-awesome
+ *= require bootstrap_and_overrides
+ *= require_tree .
+ *= require_self
  */
 
-
- 
- @import "home";
- @import "font-awesome-sprockets";
- @import "font-awesome";
- @import "bootstrap_and_overrides";
- @import "base_styles";
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
