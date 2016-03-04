@@ -13,10 +13,14 @@
  *= require fancybox
  *= require bootstrap-tokenfield
  *= require font-awesome
- *= require bootstrap_and_overrides
- *= require_tree .
  *= require_self
  */
 
+ 
+ @import "photos";
+ @import "bootstrap_and_overrides";
+ @import "home";
+ @import "patients";
+ @import "base_styles";
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
