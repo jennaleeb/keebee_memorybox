@@ -54,10 +54,15 @@ class TagsController < ApplicationController
   # DELETE /tags/1
   # DELETE /tags/1.json
   def destroy
+    @tag = Tag.find(params[:id])
     @tag.destroy
+    
     respond_to do |format|
-      format.html { redirect_to tags_url, notice: 'Tag was successfully destroyed.' }
-      format.json { head :no_content }
+      # if the response fomat is html, redirect as usual
+      format.html { redirect_to root_path }
+
+      # if the response format is javascript, do something else...
+      format.js { }
     end
   end
 

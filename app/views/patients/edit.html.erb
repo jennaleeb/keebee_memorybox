@@ -354,7 +354,7 @@
 					  
 					  <ul id="photo-container-<%= photo.id %>">
 					  	<% photo.tags.each do |tag| %>
-					  		<li><%= tag.name %></li>
+					  		<li><%= link_to tag.name, tag_path(tag), remote: true, method: :delete %></li>
 					  	<% end %>
 					  	</ul>
 					  <% end %>

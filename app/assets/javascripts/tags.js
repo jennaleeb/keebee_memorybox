@@ -27,4 +27,25 @@ $(document).ready(function(){
 	  	
 
 	});
+
+	$(".photo-tile li a").click(function(){
+		// event.preventDefault();
+		// debugger;
+		// var action = $(this).attr('href');
+		// var method = $(this).attr('data-method');
+
+
+		// $.ajax({
+		// 	method: method,
+		// 	url: action,
+		// 	// data: { tag: {name: tag_name, photo_id: photo_id} },
+		// 	data: {tag: {} }, 
+		// 	// this line makes the response format JavaScript and not html.
+		// 	dataType: 'script'
+			
+		// });
+
+		
+	});
+
 });
