@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-
+  respond_to :js, :html
   # GET /patients
   # GET /patients.json
   def index
@@ -30,47 +30,53 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     @patient.user_id = current_user.id
-    @song = @patient.songs.new
+    @patient.save
+    redirect_to edit_patient_path(@patient)
+    # @song = @patient.songs.new
+    # @patient.save
 
+    # @patient.photos.create(photo_params)
+    # respond_to do |format|
+    #   format.js
+    #   format.html { redirect_to patient_path(patient) }
+    # end
 
-      if @patient.save
+    # if params[:images]
+    #   params[:images].each do |image|
+    #     @photo = @patient.photos.create(image: image)
+    #   end
+    # end
 
-        redirect_to edit_patient_path(@patient)
+    
 
-        if params[:images]
-          params[:images].each do |image|
-            @photo = @patient.photos.create(image: image)
-          end
-        end
-        
-      end
   end
 
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json
   def update
     @patient = Patient.find(params[:id])
+    @patient.update!(patient_params)
+    @patient.photos.create(photo_params)
 
-    if @patient.update(patient_params)
-
-      if params[:images]
-        params[:images].each do |image|
-          @photo = @patient.photos.create(image: image)
-        end
-      end
-      
-      redirect_to edit_patient_path(@patient)
+    respond_with do |format|
+      format.js
+      format.html { redirect_to patient_path(@patient) }
     end
-    
-    # respond_to do |format|
-    #   if @patient.update(patient_params)
-    #     format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @patient }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @patient.errors, status: :unprocessable_entity }
-    #   end
+
+    # if @patient.update(patient_params)
+      # if params[:images]
+      #   params[:images].each do |image|
+      #     @photo = @patient.photos.create(image: image)
+      #     respond_to do |format|
+      #       render 'update.js.erb'
+      #       format.js
+      #       format.html { redirect_to patient_path(@patient) }
+      #     end
+      #   end
+      # end
+      
     # end
+    
   end
 
   # DELETE /patients/1
@@ -87,6 +93,10 @@ class PatientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
       @patient = Patient.find(params[:id])
+    end
+
+    def photo_params
+      params.require(:patient).permit(:image)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

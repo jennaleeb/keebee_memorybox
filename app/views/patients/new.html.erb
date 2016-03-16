@@ -23,17 +23,17 @@
 					<span class="chevron"></span>
 				</li>
 				<li data-step="4" data-name="template">
-					<span class="badge">3</span>Photos
+					<span class="badge">4</span>Photos
+					<span class="chevron"></span>
+				</li>
+				<li data-step="5" data-name="template">
+					<span class="badge">5</span>Complete
 					<span class="chevron"></span>
 				</li>
 			</ul>
 		</div>
 
-		<div class="actions">
-			<button type="button" class="btn btn-default btn-prev">
-				Previous</button>
-			<button type="button" class="btn btn-primary btn-next" data-last="Complete">Next</button>
-		</div>
+		
 	<div class="step-content">
 	
 		<div class="step-pane active sample-pane alert" data-step="1">
@@ -68,7 +68,7 @@
 								  </div>
 								</div>
 
-								<button type="button" class="btn btn-primary btn-next" data-last="Complete"></button>
+								<%= f.submit 'Get Started', :class => 'btn btn-primary form-button' %>
 
 							</div>
 
@@ -315,23 +315,36 @@
 
 			<div class="container-fluid">
 
-					<div class="form-group">
-						<%= f.label "Please share some photos (family, favourite things, etc)" %>
-				  		    <div class=""> 
-				  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
-				  		    </div>
-			  		</div>
 
-			  		<div class="">
-			  		  <%= f.submit "Create Profile", :class => 'btn btn-primary form-button' %>
-			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-			  		              patients_path, :class => 'btn btn-default' %>
-			  		</div>
+				<div class="form-group">
+					<%= f.label "Please share some photos (family, favourite things, etc)" %>
+<!-- 			  		<%= f.file_field "images[]", type: :file, class: "upload" %>
+ -->
+			  		<%= f.file_field :image, class: "upload" %>
 
+		  		</div>
 
+			  	<div id="pictures-container"> 
+			  		<%= render partial: 'photos' %>
+			  	</div>
+
+			  	<%= f.submit "Upload", :class => 'btn btn-primary form-button' %>
 
 			</div>
 
+		</div>
+
+		<div class="step-pane active sample-pane alert" data-step="5">
+
+			<div class="center-content">
+				<h1>All Done!</h1>
+				<div class="">
+				  <%= f.submit "Create Profile", :class => 'btn btn-primary form-button' %>
+				  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+				              patients_path, :class => 'btn btn-default' %>
+				</div>
+
+			</div>
 		</div>
 		
 		

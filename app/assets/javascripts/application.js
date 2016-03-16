@@ -17,7 +17,9 @@
 //= require bootstrap-tokenfield
 //= require twitter/bootstrap
 //= require fuelux.js
+//= require jquery.remotipart
 //= require tags.js
+//= require patients.js
 //= require_self
 
 $(document).ready(function() {

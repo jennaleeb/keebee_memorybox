@@ -62,6 +62,9 @@ gem 'pry'
 #Font awesome
 gem 'font-awesome-sass'
 
+# Make multipart forms asynchronous
+gem 'remotipart', '~> 1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -4,7 +4,7 @@
 
  <div class="fuelux">
 
- 	<%= form_for @patient, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true } do |f| %>
+ 	<%= form_for @patient, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true }, :remote => true do |f| %>
 
  	<div class="wizard" data-initialize="wizard" id="myWizard">
 
@@ -325,73 +325,23 @@
 
  					<div class="form-group">
  						<%= f.label "Please share some photos (family, favourite things, etc)" %>
- 				  		    <div class=""> 
- 				  		      <%= file_field_tag "images[]", type: :file, multiple: true %>
- 				  		    </div>
+
+<!--  				  		<%= f.file_field "images[]", type: :file, multiple: true , class: "upload" %>
+ -->
+ 				  		<%= f.file_field :image, class: "upload" %>
+
  			  		</div>
 
- 			  		<div class="">
- 			  		  <%= f.submit "Update Profile", :class => 'btn btn-primary form-button' %>
- 			  		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
- 			  		              patients_path, :class => 'btn btn-default' %>
- 			  		</div>
 
  			  		<% end %>
 
  			</div>
 
-	  		<div class="photo-holder">
+	  		<div id="pictures-container"> 
+				<%= render partial: 'photos' %>
+	  		</div> 
 
-		  		<% @patient.photos.each do |photo| %>
-			  		<div class="photo-tile">
-			  			<%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
-
-				  		  <%= link_to patient_photo_path(@patient, photo), :class => "delete-image", :method => :delete do %>
-					  		<i class="fa fa-trash"></i>
-					  <% end %>
-
-					  <% if photo.tags != nil %>
-					  
-					  <ul id="photo-container-<%= photo.id %>">
-					  	<% photo.tags.each do |tag| %>
-					  		<li><%= link_to tag.name, tag_path(tag), remote: true, method: :delete %></li>
-					  	<% end %>
-					  	</ul>
-					  <% end %>
-
-
-					  <div class="input-group input-append dropdown combobox" data-initialize="combobox">
-
-					  	<%= form_for(Tag.new) do |f| %>
-
-					  	<div class="combobox-container">
-
-					  		<%= hidden_field_tag "tag[photo_id]", photo.id %>
-					  		
-
-					  		<input type="text" name="tag[name]" list="tags" class="form-control tag-name" autocomplete="off">
-					  		<datalist id="tags">
-					  		  	<option value="Family">
-					  		  	<option value="Pets">
-					  			<option value="Activities">
-				  		  		<option value="TV/Movies/Books">
-					  		</datalist>
-
-					  	</div>
-					  		
-					  			<%= f.submit "Tag", :class => "tag-button" %>
-
-					  	<% end %>
-
-					  </div>
-					  
-					  		
-
-					
-			  		</div>
-				<% end %>
-	  		</div>
-
+	  		
  		</div>
  		
  		
