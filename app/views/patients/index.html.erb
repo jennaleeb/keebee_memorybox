@@ -9,7 +9,7 @@
         <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:first_name) %></th>
         <th><%= model_class.human_attribute_name(:last_name) %></th>
-        <!-- <th>Photos?</th> -->
+        <th><%= "RFID Tag" %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
@@ -19,6 +19,9 @@
           <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= link_to patient.id, patient_path(patient) %></td>
           <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= patient.first_name %></td>
           <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"> <%= patient.last_name %></td>
+          <td class="col-md-3">
+            <%= patient.RFID %>
+          </td>
 
           <td>
             <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>

@@ -30,7 +30,7 @@
 			<div class="navbar-collapse collapse" id="navbar">
 				<% if user_signed_in? %>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="nav-item "><%=link_to "ABOUT", patients_path, :class => 'navbar-link' %></li>
+						<li class="nav-item "><%=link_to "ABOUT", root_path, :class => 'navbar-link' %></li>
 						
 						<% if current_user.admin_user? %>
 						
@@ -51,7 +51,7 @@
 					</ul>
 				<% else %>
 				 	<ul class="nav navbar-nav navbar-right">
-					 	<li><%=link_to "ABOUT", patients_path %></li>
+					 	<li><%=link_to "ABOUT", root_path %></li>
 					 	<li class="login-buttons"><button class="btn btn-default" ><%= link_to "REGISTER", new_user_registration_path %></button></li>
 					  	<li class="login-buttons"><button class="btn btn-default"><%= link_to "SIGN IN", new_user_session_path %></button></li>
 					</ul>
