@@ -110,6 +110,7 @@
 .photo-container {
 	display: flex;
 	flex-direction: row;
+	overflow: scroll;
 
 	img {
 		margin: 1em;

@@ -22,7 +22,6 @@ class PatientsController < ApplicationController
   def edit
     @patient = Patient.find(params[:id])
     @tag = Tag.new
-
   end
 
   # POST /patients

@@ -10,16 +10,14 @@
 			  <% if photo.tags != nil %>
 			  
 			  <ul id="photo-container-<%= photo.id %>">
-			  	<% photo.tags.each do |tag| %>
-			  		<li><%= link_to tag.name, tag_path(tag), remote: true, method: :delete %></li>
-			  	<% end %>
+
 			  	</ul>
 			  <% end %>
 
 
 			  <div class="input-group input-append dropdown combobox" data-initialize="combobox">
 
-			  	<%= form_for(Tag.new) do |f| %>
+			  	<%= form_for (Tag.new) do |f| %>
 
 			  	<div class="combobox-container">
 

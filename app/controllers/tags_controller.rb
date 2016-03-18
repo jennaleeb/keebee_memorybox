@@ -26,11 +26,11 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.create(tag_params)
     photo = Photo.find(@tag.photo_id)
-    patient = Patient.find(photo.id)
+    patient = Patient.find(photo.patient_id)
+    
     respond_to do |format|
         # if the response fomat is html, redirect as usual
         format.html { redirect_to patient_path(patient) }
-
         # if the response format is javascript, do something else...
         format.js { }
       end
