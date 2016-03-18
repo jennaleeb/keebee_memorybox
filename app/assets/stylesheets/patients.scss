@@ -153,3 +153,22 @@
 .tag-form {
 	
 }
+
+@media (max-width: 800px) {
+	.steps-container {
+		visibility: hidden;
+	}
+
+	.actions {
+		width: 100%;
+		text-align: center;
+	}
+
+	#new-profile-image {
+		background-attachment: initial;
+	}
+
+	.column-right {
+		margin-top: 15em !important;
+	}
+}
