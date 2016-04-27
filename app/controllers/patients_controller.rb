@@ -25,7 +25,6 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
-    @tag = Tag.new
   end
 
   # POST /patients
@@ -35,6 +34,7 @@ class PatientsController < ApplicationController
     @patient.user_id = current_user.id
     @patient.save
     redirect_to edit_patient_path(@patient)
+
     # @song = @patient.songs.new
     # @patient.save
 
@@ -60,6 +60,7 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
     @patient.update!(patient_params)
     @patient.photos.create(photo_params)
+    @tag = Tag.new
 
     respond_with do |format|
       format.js

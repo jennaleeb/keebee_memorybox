@@ -18,6 +18,7 @@ class PhotosController < ApplicationController
   def new
     @patient = Patient.find(params[:patient_id])
     @photo = Photo.new()
+    @tag = Tag.new
   end
 
   # GET /photos/1/edit
@@ -43,6 +44,7 @@ class PhotosController < ApplicationController
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
   def update
+    @tag = Tag.new
     respond_to do |format|
       if @photo.update(photo_params)
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
