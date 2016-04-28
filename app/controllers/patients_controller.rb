@@ -35,22 +35,9 @@ class PatientsController < ApplicationController
     @patient.save
     redirect_to edit_patient_path(@patient)
 
+    # Not using this at the moment
     # @song = @patient.songs.new
     # @patient.save
-
-    # @patient.photos.create(photo_params)
-    # respond_to do |format|
-    #   format.js
-    #   format.html { redirect_to patient_path(patient) }
-    # end
-
-    # if params[:images]
-    #   params[:images].each do |image|
-    #     @photo = @patient.photos.create(image: image)
-    #   end
-    # end
-
-    
 
   end
 
@@ -58,28 +45,17 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1.json
   def update
     @patient = Patient.find(params[:id])
-    @patient.update!(patient_params)
-    @patient.photos.create(photo_params)
-    @tag = Tag.new
 
-    respond_with do |format|
-      format.js
-      format.html { redirect_to patient_path(@patient) }
+    if @patient.update(patient_params)
+      if params[:images]
+        params[:images].each do |image|
+          @photo = @patient.photos.create(image: image)
+        end
+        
+      end
+      redirect_to :back
     end
-
-    # if @patient.update(patient_params)
-      # if params[:images]
-      #   params[:images].each do |image|
-      #     @photo = @patient.photos.create(image: image)
-      #     respond_to do |format|
-      #       render 'update.js.erb'
-      #       format.js
-      #       format.html { redirect_to patient_path(@patient) }
-      #     end
-      #   end
-      # end
       
-    # end
     
   end
 

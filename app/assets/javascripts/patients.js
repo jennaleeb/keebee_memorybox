@@ -1,19 +1,22 @@
 
 $(document).ready(function(){
 
-	// When page refreshes
+	// When page refreshes...
 	$(window).bind('beforeunload',function(){
 
-	     //find the pane with class 'active' and store it
+	     //...find the pane with class 'active' and store it
 	    var pane_active = $(".active");
 		localStorage.setItem("step_num", pane_active.data("step"))
 	});
 
+
+	// Force all tabs to be 'complete'
 	$('.steps li').addClass("complete");
 
 	if (localStorage.getItem("step_num") === null) {
 	    alert("Local Storage not working");
-	}else{
+
+	} else {
 		
 		// remove the default 'active' from page 1
 	   $('.active').removeClass('active');
@@ -24,6 +27,7 @@ $(document).ready(function(){
 	   $('.steps li[data-step="' + num + '"]').addClass('active');
 	}
 
+
 	// Delete user photos
 	$('body').on('click', '.delete-image', function() {
 	  $(this).parent(".photo-tile").fadeOut(200);
@@ -31,10 +35,7 @@ $(document).ready(function(){
 
 	// Upload images asynch
 	$('body').on('change', '.upload', function() {
-	  $(this).parents('form').submit();
-
-	  //refresh page
-	  location.reload();
+	  $(this).parents('#form-in-wizard').submit();
 	});
 
 	$('body').on('click', '.patient-submit', function() {

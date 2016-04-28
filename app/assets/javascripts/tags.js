@@ -3,7 +3,6 @@ $(document).ready(function(){
 	
 	$(".new_tag").submit(function( event ) {
 		event.preventDefault();
-		debugger;
 	  	var action = $(this).attr('action');
 	  	var method = $(this).attr('method');
 

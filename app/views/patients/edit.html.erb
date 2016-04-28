@@ -4,7 +4,7 @@
 
  <div class="fuelux">
 
- 	<%= form_for @patient, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true }, :remote => true do |f| %>
+ 	<%= form_for @patient, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true } do |f| %>
 
  	<div class="wizard" data-initialize="wizard" id="myWizard">
 
@@ -332,17 +332,22 @@
 
  			<div class="container-fluid">
 
- 					<div class="form-group">
+ 					<div class="form-group image-form">
+
  						<%= f.label "Please share some photos (family, favourite things, etc)" %>
 
-<!--  				  		<%= f.file_field "images[]", type: :file, multiple: true , class: "upload" %>
+ 						<span class="btn btn-default fileinput-button">
+ 						    <i class="fa fa-upload" aria-hidden="true"></i>
+  				  			<%= file_field_tag "images[]", type: :file, multiple: true, class: "upload" 	%>
+  				  			Upload Images
+ 						</span>
+<!--  				  		<%= f.file_field :image, class: "upload", id: "upload-image" %>
  -->
- 				  		<%= f.file_field :image, class: "upload" %>
 
  			  		</div>
 
 
- 			  		<% end %>
+ 	<% end %>
 
  			</div>
 
@@ -357,8 +362,9 @@
  	</div>
  	
 
-
  </div>
+
+
 
 
 

@@ -26,18 +26,18 @@
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 	display: inline-block;
 	position: relative;
-	width: 22%;
+	width: 19em;
 
 	img {
-		width: 16em;
+		width: 17em;
 		text-align: center;
 		margin: 1em; 
 	}
 
 	.delete-image {
 		position: absolute;
-		top: 0.5em;
-		right: 1em;
+		top: 0.25em;
+		right: 0.5em;
 		content: "";
 		background-color: white;
 		padding: 0.2em 0.5em;
@@ -390,6 +390,32 @@ nav li {
 .open>.dropdown-toggle.btn-primary {
     background-color: cornflowerblue;
     border-color: #ccc;;
+}
+
+#pictures-container {
+	height: 35em;
+	overflow: scroll;
+}
+
+
+.image-form {
+	text-align: center;
+
+	label {
+		display: block;
+	}
+}
+
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter:'alpha(opacity=0)';
+    font-size: 50px;
+    direction: ltr;
+    cursor: pointer;
 }
 
 
