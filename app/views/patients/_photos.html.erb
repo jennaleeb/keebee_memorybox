@@ -1,5 +1,11 @@
+		
+		<% if @patient.photos.length > 0 %>
+			<h2 class="tag-instructions">Label your pictures using the dropdown menu or by typing your own.</h2>
+		<% end %>
+		
+
   		<% @patient.photos.each do |photo| %>
-  			
+
 	  		<div class="photo-tile">
 	  			<%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
 
@@ -24,11 +30,12 @@
 			  		<%= hidden_field_tag "tag[photo_id]", photo.id %>
 			  		
 
-			  		<input type="text" name="tag[name]" list="tags" class="form-control tag-name" autocomplete="off">
+			  		<input type="text" name="tag[name]" list="tags" class="form-control tag-name" autocomplete="off" >
 			  		<datalist id="tags">
 			  		  	<option value="Family">
-			  		  	<option value="Pets">
+			  		  	<option value="Pets/Animals">
 			  			<option value="Activities">
+			  			<option value="Portrait">
 		  		  		<option value="TV/Movies/Books">
 			  		</datalist>
 
