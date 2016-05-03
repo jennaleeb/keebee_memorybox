@@ -25,3 +25,4 @@
 # Ignore Profile/Image folders
 /Images
 /Profiles
+/public/system/photos/
