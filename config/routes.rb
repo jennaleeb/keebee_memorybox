@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     resources :photos
   end
 
+  resources :patients do
+    resources :videos
+  end
+
+
   resources :tags
 
   #get 'photos/new?:patient_id' => 'photos#create'

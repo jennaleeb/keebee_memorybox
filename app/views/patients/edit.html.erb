@@ -23,11 +23,16 @@
  					<span class="chevron"></span>
  				</li>
  				<li data-step="4" data-name="template">
- 					<span class="badge">4</span>Photos
+ 					<span class="badge">4</span>Videos
+ 					<span class="chevron"></span>
+ 				</li>
+ 				<li data-step="5" data-name="template">
+ 					<span class="badge">5</span>Photos
  					<span class="chevron"></span>
  				</li>
  			</ul>
- 		</div>
+ 		</div> <!-- steps-container -->
+
 
  		<div class="actions">
  			<button type="button" class="btn btn-default btn-prev">
@@ -35,6 +40,7 @@
  			<button type="button" class="btn btn-primary btn-next" data-last="Complete">Next</button>
  			<%= f.submit 'Submit', :class => 'btn btn-success patient-submit' %>
  		</div>
+
  	<div class="step-content">
  	
  		<div class="step-pane active sample-pane alert" data-step="1">
@@ -328,7 +334,28 @@
 
 		</div>
 
- 		<div class="step-pane sample-pane alert" data-step="4">
+		<div class="step-pane sample-pane alert" data-step="4">
+
+			<div class="container-fluid">
+				<div class="form-group image-form">
+
+					<%= f.label :clips, "Please share some videos that help describe #{@patient.first_name.titleize}'s interests" %>
+
+					<span class="btn btn-default fileinput-button">
+					    <i class="fa fa-upload" aria-hidden="true"></i>
+				  			<%= file_field_tag "clips[]", type: :file, multiple: true, class: "upload" 	%>
+				  			Upload Videos
+					</span>
+
+		  		</div>
+			</div>
+
+		  		<div id="pictures-container"> 
+					<%= render partial: 'videos' %>
+		  		</div> 
+		</div>
+
+ 		<div class="step-pane sample-pane alert" data-step="5">
 
  			<div class="container-fluid">
 
@@ -341,28 +368,27 @@
   				  			<%= file_field_tag "images[]", type: :file, multiple: true, class: "upload" 	%>
   				  			Upload Images
  						</span>
-<!--  				  		<%= f.file_field :image, class: "upload", id: "upload-image" %>
- -->
 
  			  		</div>
 
 
  	<% end %>
 
- 			</div>
+ 			</div><!-- container-fluid -->
 
 	  		<div id="pictures-container"> 
 				<%= render partial: 'photos' %>
 	  		</div> 
 
 	  		
- 		</div>
+ 		</div><!-- step-pane -->
  		
+ 		</div><!-- step-content -->
  		
- 	</div>
+ 	</div> <!-- wizard -->
  	
 
- </div>
+ </div> <!-- fuelux -->
 
 
 

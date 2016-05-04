@@ -1,0 +1,21 @@
+		
+		<% if @patient.videos.length > 0 %>
+			<h2 class="tag-instructions">Label your pictures using the dropdown menu or by typing your own.</h2>
+		<% end %>
+		
+
+  		<% @patient.videos.each do |video| %>
+
+	  		<div class="photo-tile">
+	  			<%= link_to image_tag(video.clip.url(:thumb), class: 'media-object'), video.clip.url, target: '_blank' %>
+
+		  		  <%= link_to patient_video_path(@patient, video), :class => "delete-image", :method => :delete, remote: true do %>
+			  		<i class="fa fa-trash"></i>
+			  <% end %>
+
+		
+
+			  </div>
+			  
+			  		
+		<% end %>

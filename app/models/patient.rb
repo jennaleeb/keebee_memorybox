@@ -5,6 +5,7 @@ class Patient < ActiveRecord::Base
 	# has_many :patients
 	has_many :photos, dependent: :destroy
 	has_many :songs, dependent: :destroy
+	has_many :videos, dependent: :destroy
 
 	accepts_nested_attributes_for :songs
 

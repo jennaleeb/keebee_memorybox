@@ -34,6 +34,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Paperclip for file uploads
 gem "paperclip", "~> 4.3"
+
+# For videos
+gem 'paperclip-av-transcoder'
+gem "paperclip-ffmpeg", "~> 1.2.0"
+
 # need a lower version to work with aws
 gem 'aws-sdk', '< 2.0'
 

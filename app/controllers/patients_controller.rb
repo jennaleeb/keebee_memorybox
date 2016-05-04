@@ -25,6 +25,8 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+    # fix for multiple songs
+    @song = @patient.songs.last
   end
 
   # POST /patients
@@ -33,11 +35,9 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     @patient.user_id = current_user.id
     @patient.save
+    @song = @patient.songs.create
     redirect_to edit_patient_path(@patient)
 
-    # Not using this at the moment
-    # @song = @patient.songs.new
-    # @patient.save
 
   end
 
@@ -52,6 +52,12 @@ class PatientsController < ApplicationController
           @photo = @patient.photos.create(image: image)
         end
         
+      end
+
+      if params[:clips]
+        params[:clips].each do |clip|
+          @video = @patient.videos.create(clip: clip)
+        end
       end
       redirect_to :back
     end
@@ -77,6 +83,10 @@ class PatientsController < ApplicationController
 
     def photo_params
       params.require(:patient).permit(:image)
+    end
+
+    def video_params
+      params.require(:patient).permit(:clip)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
