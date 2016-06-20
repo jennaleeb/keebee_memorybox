@@ -154,6 +154,16 @@
 	
 }
 
+.patient-search {
+	text-align: center;
+	margin: 2em 0;
+	input[type="text"] {
+		width: 25%;
+
+	}
+	
+}
+
 @media (max-width: 800px) {
 	.steps-container {
 		visibility: hidden;
@@ -171,4 +181,67 @@
 	.column-right {
 		margin-top: 15em !important;
 	}
+}
+
+.tabs {
+	position: relative;   
+	min-height: 500px;
+	clear: both;
+	margin: 1em auto;
+
+}
+
+@media (min-width: 768px) {
+	.tabs {
+		width: 70%;
+	}
+}
+
+.tab {
+	float: left;
+}
+
+.tab label {
+	position: relative;
+	cursor: pointer;
+	height: 50px;
+	text-align: center;
+	padding-top: 0.4em;
+	padding-left: 1em;
+	padding-right: 1em;
+	color: #95a5a6;
+
+	i {
+		padding: 8px;
+	}
+
+}
+
+.tab [type=radio] {
+	display: none;   
+}
+
+.tab [type=radio]:hover {
+}
+
+.tab-content {
+	position: absolute;
+	top: 48px;
+	left: 0;
+	background: white;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+	border: 1px solid #ccc; 
+	overflow: auto;
+	margin-top: 0.5em;
+}
+
+[type=radio]:checked ~ label {
+	color: #354c8c;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab-content {
+	z-index: 1;	
 }

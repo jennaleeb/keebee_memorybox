@@ -5,11 +5,27 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    @recently_added_patients = Patient.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
+    @recently_updated_patients = Patient.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
+
     if current_user.admin_user?
-      @patients = Patient.all
+
+      if params[:search]
+          @patients = Patient.search(params[:search]).order("created_at DESC")
+        else
+          @patients = Patient.order('created_at DESC')
+      end
+
     else
-      @patients = Patient.where(user_id: current_user.id)
+
+      if params[:search]
+          @patients = Patient.where(user_id: current_user.id).search(params[:search]).order("created_at DESC")
+        else
+          @patients = Patient.where(user_id: current_user.id).order('created_at DESC')
+      end
+
     end
+
   end
 
   # GET /patients/1
@@ -94,6 +110,6 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:first_name, :last_name, :nickname, :language, :birthplace,
         :home_base, :spouse_name, :children, :grandchildren, :occupation, :pets, :favourite_sports,
         :favourite_radio, :favourite_childhood_games, :favourite_movie_tv, :favourite_actors,
-        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :RFID, songs_attributes: [:id, :title, :artist, :url])
+        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, songs_attributes: [:id, :title, :artist, :url])
     end
 end

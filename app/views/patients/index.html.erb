@@ -1,58 +1,137 @@
 <%- model_class = Patient -%>
 
 <div class="container">
-  
-  <table class="table table-striped patient-index-table">
-    <thead>
 
-      <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
-        <th><%= model_class.human_attribute_name(:first_name) %></th>
-        <th><%= model_class.human_attribute_name(:last_name) %></th>
-        <th><%= "RFID Tag" %></th>
-        <th><%=t '.actions', :default => t("helpers.actions") %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @patients.each do |patient| %>
-        <tr>
-          <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= link_to patient.id, patient_path(patient) %></td>
-          <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= patient.first_name %></td>
-          <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"> <%= patient.last_name %></td>
-          <td class="col-md-3">
-            <%= patient.RFID %>
-          </td>
+  <div class="row">
+    
+      <%= form_tag(patients_path, :method => "get", class: "form-inline") do %>
 
-          <td>
-            <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_patient_path(patient), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        patient_path(patient),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="12" class="hiddenRow">
-            <div class="accordian-body collapse" id="data<%=patient.id%>">
-
-
-              
-              <div class="photo-container">
-                <% patient.photos.each do |photo| %>
-                  <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
-                <% end %>
-              </div>
-            </div>
-          </td>
-        </tr>
+        <div class="patient-search">
+        <%= text_field_tag :search, params[:search], placeholder: "search by first or last name, RFID, etc.", class: "form-control" %>
+        <%= submit_tag "Search" , class: "btn btn-default" %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    
+  </div>
+
+  <div class="tabs">
+    <div class="tab">
+        <input type="radio" id="tab-1" name="tab-group-1" checked>
+        <label for="tab-1"><i class="fa fa-users" aria-hidden="true"></i>All Profiles</label>
+
+        <div class="tab-content">
+          <table class="table table-striped patient-index-table">
+            <thead>
+
+              <tr>
+                <th><%= model_class.human_attribute_name(:id) %></th>
+                <th><%= "RFID" %></th>
+                <th><%= model_class.human_attribute_name(:first_name) %></th>
+                <th><%= model_class.human_attribute_name(:last_name) %></th>
+                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @patients.each do |patient| %>
+                <tr>
+                  <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= link_to patient.id, patient_path(patient) %></td>
+                  <td class="col-md-2">
+                    <%= patient.rfid_number %>
+                  </td>
+                  <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= patient.first_name %></td>
+                  <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"> <%= patient.last_name %></td>
+
+                  <td>
+                    <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>
+                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                edit_patient_path(patient), :class => 'btn btn-default btn-xs' %>
+                    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                patient_path(patient),
+                                :method => :delete,
+                                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                :class => 'btn btn-xs btn-danger' %>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="12" class="hiddenRow">
+                    <div class="accordian-body collapse" id="data<%=patient.id%>">
+
+
+                      
+                      <div class="photo-container">
+                        <% patient.photos.each do |photo| %>
+                          <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+    <div class="tab">
+        <input type="radio" id="tab-2" name="tab-group-1">
+        <label for="tab-2"><i class="fa fa-calendar" aria-hidden="true"></i>Recently Added (<%= @recently_added_patients.count %>)</label>
+        <div class="tab-content">
+          <table class="table table-striped patient-index-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Added On</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @recently_added_patients.each do |patient| %>
+                <tr>
+                  <td><%= patient.first_name %></td>
+                  <td><%= patient.last_name %></td>
+                  <td><%= patient.created_at.strftime('%c') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          
+        </div>
+    </div>
+
+    <div class="tab">
+        <input type="radio" id="tab-3" name="tab-group-1">
+        <label for="tab-3"><i class="fa fa-cog" aria-hidden="true"></i>
+New Updates (<%= @recently_updated_patients.count %>)</label>
+
+        <div class="tab-content">
+          <table class="table table-striped patient-index-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Updated On</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @recently_updated_patients.each do |patient| %>
+                <tr>
+                  <td><%= patient.first_name %></td>
+                  <td><%= patient.last_name %></td>
+                  <td><%= patient.updated_at.strftime('%c') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+  
+
 
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_patient_path,
