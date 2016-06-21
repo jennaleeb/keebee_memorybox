@@ -8,6 +8,10 @@ class PatientsController < ApplicationController
     @recently_added_patients = Patient.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
     @recently_updated_patients = Patient.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
 
+    if params[:advanced_search]
+      @patients_advanced_filter = Patient.tag_search(params[:advanced_search])
+    end
+
     if current_user.admin_user?
 
       if params[:search]

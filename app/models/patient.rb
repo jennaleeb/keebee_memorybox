@@ -34,4 +34,16 @@ class Patient < ActiveRecord::Base
 	  		where('first_name ILIKE ? OR last_name ILIKE ?', "%#{search}%", "%#{search}%")
 	  	end
 	end
+
+	def self.tag_search(tag_name)
+		tags = Tag.where(name: tag_name)
+		patients = []
+		tags.each do |tag|
+			photo = Photo.find(tag.photo_id)
+			patients << Patient.find(photo.patient_id)
+		end
+
+		return patients
+
+	end
 end

@@ -104,8 +104,7 @@
 
     <div class="tab">
         <input type="radio" id="tab-3" name="tab-group-1">
-        <label for="tab-3"><i class="fa fa-cog" aria-hidden="true"></i>
-New Updates (<%= @recently_updated_patients.count %>)</label>
+        <label for="tab-3"><i class="fa fa-bolt" aria-hidden="true"></i>New Updates (<%= @recently_updated_patients.count %>)</label>
 
         <div class="tab-content">
           <table class="table table-striped patient-index-table">
@@ -128,7 +127,45 @@ New Updates (<%= @recently_updated_patients.count %>)</label>
             </tbody>
           </table>
         </div>
-      </div>
+    </div>
+
+    <div class="tab">
+        <input type="radio" id="tab-4" name="tab-group-1">
+        <label for="tab-4"><i class="fa fa-cog" aria-hidden="true"></i>Advanced Search</label>
+
+        <div class="tab-content">
+
+          <%= form_tag(patients_path, :method => "get", class: "form-inline") do %>
+
+            <div class="patient-search">
+            <%= text_field_tag :advanced_search, params[:advanced_search], placeholder: "search by first or last name, RFID, etc.", class: "form-control" %>
+            <%= submit_tag "Search" , class: "btn btn-default" %>
+            </div>
+          <% end %>
+
+          <table class="table table-striped patient-index-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Updated On</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% if @patients_advanced_filter != nil %>
+                <% @patients_advanced_filter.each do |patient| %>
+                  <tr>
+                    <td><%= patient.first_name %></td>
+                    <td><%= patient.last_name %></td>
+                    <td><%= patient.updated_at.strftime('%c') %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
   </div>
   
 
