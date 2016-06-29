@@ -85,6 +85,22 @@ a:link, a:visited {
 	text-align: center;
 }
 
+.center-bubble {
+  /*Center multiline text*/
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  display: table; 
+
+  p {
+    display: table-cell; 
+    vertical-align: middle; 
+    text-align: center; 
+  }
+}
+
 
 .column-left {
 	position: absolute;

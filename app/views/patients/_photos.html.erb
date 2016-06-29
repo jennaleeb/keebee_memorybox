@@ -16,8 +16,10 @@
 			  <% if photo.tags != nil %>
 			  
 			  <ul id="photo-container-<%= photo.id %>">
-
-			  	</ul>
+			  	<% photo.tags.each do |tag| %>
+			  		<li id="tag-<%=tag.id%>"><%= link_to tag.name, tag_path(tag), remote: true, method: :delete %></li>
+			  	<% end %>
+			  </ul>
 			  <% end %>
 
 
@@ -45,7 +47,7 @@
 
 			  	<% end %>
 
-			  </div>
+			</div>
 			  
 			  		
 
