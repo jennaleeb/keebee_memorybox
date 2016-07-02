@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620194935) do
+ActiveRecord::Schema.define(version: 20160702125736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160620194935) do
     t.text     "additional_info"
     t.integer  "user_id"
     t.string   "rfid_number"
+    t.string   "residence"
   end
 
   add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(version: 20160620194935) do
   add_index "tags", ["photo_id"], name: "index_tags_on_photo_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -91,7 +92,6 @@ ActiveRecord::Schema.define(version: 20160620194935) do
     t.string   "user_category"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|

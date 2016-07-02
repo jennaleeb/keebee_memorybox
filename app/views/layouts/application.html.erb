@@ -32,8 +32,9 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item "><%=link_to "ABOUT", root_path, :class => 'navbar-link' %></li>
 						
-
-						<% if current_user.patient_count > 1 %>
+						<% if current_user.user_category == "admin" %>
+							<li class="nav-item "><%= link_to "ADMIN", patients_path, :class => 'navbar-link' %></li>
+						<% elsif current_user.patient_count > 1 %>
 							<li class="nav-item "><%= link_to "MY PROFILES", patients_path, :class => 'navbar-link' %></li>
 						<% elsif current_user.patient_count == 1 %> 	
 							<li class="nav-item "><%= link_to "#{current_user.patient_label.first_name.upcase}'S PROFILE", patient_path(current_user.patient_label), :class => 'navbar-link' %></li>

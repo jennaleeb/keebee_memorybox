@@ -68,6 +68,11 @@
 								  </div>
 								</div>
 
+								<div class="form-group">
+									<%= f.label :residence, "Residence" %>
+									<%= f.select(:residence, ['Grandview Lodge', 'Pine Springs', 'Fairview', 'Heritage Home'], {}, {:class => "form-control"}) %>
+								</div>
+
 								<% if current_user.admin_user? %>
 									<div class="form-group">
 										<%= f.label :rfid_number, "RFID Number" %>

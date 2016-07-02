@@ -3,7 +3,6 @@ $(document).ready(function(){
 
 	// When page refreshes...
 	$(window).bind('beforeunload',function(){
-
 	     //...find the pane with class 'active' and store it
 	    var pane_active = $(".active");
 		localStorage.setItem("step_num", pane_active.data("step"))

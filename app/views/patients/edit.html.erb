@@ -76,6 +76,11 @@
  								  </div>
  								</div>
 
+ 								<div class="form-group">
+ 									<%= f.label :residence, "Residence" %>
+ 									<%= f.text_field :residence, :class => 'form-control' %>
+ 								</div>
+
  								<% if current_user.admin_user? %>
  									<div class="form-group">
  										<%= f.label :rfid_number, "RFID Number" %>
@@ -255,7 +260,7 @@
 
 					  		<div class="form-group">
 
-					  		  <%= f.label :favourite_sports, "Does your love one have a favourite sport?" , :class => '' %>
+					  		  <%= f.label :favourite_sports, "Does your loved one have a favourite sport?" , :class => '' %>
 					  		  <p>If more than one, enter them separated by a comma.</p>
 					  		    <div class=""> 
 					  		      <%= f.text_field :favourite_sports, :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
@@ -295,7 +300,7 @@
 					  		</div>
 
 					  		<div class="form-group">
-					  		  <%= f.label :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
+					  		  <%= f.label :favourite_activities, "What are your loved one's favourite activities/hobbies?" , :class => '' %>
 					  		<p>If more than one, enter them separated by a comma.</p>
 					  		    <div class=""> 
 					  		      <%= f.text_field :favourite_activities, :class => 'form-control tokenize', :placeholder => 'E.g. Knitting, gardening, fishing' %>
@@ -303,7 +308,7 @@
 					  		</div>
 
 					  		<div class="form-group">
-					  		  <%= f.label :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
+					  		  <%= f.label :favourite_animals, "What are your loved one's favourite animals?" , :class => '' %>
 					  		
 					  		    <div class=""> 
 					  		      <%= f.text_field :favourite_animals, :class => 'form-control tokenize', :placeholder => 'E.g. Cats, dogs' %>
