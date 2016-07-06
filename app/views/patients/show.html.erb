@@ -111,6 +111,13 @@
 						<h3>Interests & Hobbies</h3>
 						
 						<table class="table">
+							<% @patient.interests.each do |interest| %>
+							<tr>
+								<td class="table-head"><%= interest.category %></td>
+								<td><%=interest.name %></td>
+							</tr>
+							<% end %>
+
 							<tr>
 								<td class="table-head">Favourite Song</td>
 								<td><% @patient.songs.each do |song| %>

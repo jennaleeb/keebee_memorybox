@@ -5,11 +5,14 @@ class Patient < ActiveRecord::Base
 	include ActiveModel::Dirty
 
 	belongs_to :user
+	has_many :patient_interests
+	has_many :interests, through: :patient_interests
 	has_many :photos, dependent: :destroy
 	has_many :songs, dependent: :destroy
 	has_many :videos, dependent: :destroy
 
 	accepts_nested_attributes_for :songs
+	accepts_nested_attributes_for :interests, :reject_if => lambda { |b| b[:name].blank? }
 
 	# Take semi-colon separated string and turn it into a list
 	def split_list(attribute)

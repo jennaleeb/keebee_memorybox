@@ -35,6 +35,8 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    @patient = Patient.find(params[:id])
+    @interests = @patient.interests
   end
 
   # GET /patients/new
@@ -45,8 +47,9 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+
     # fix for multiple songs
-    @song = @patient.songs.last
+    # @song = @patient.songs.last
   end
 
   # POST /patients
@@ -55,10 +58,15 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     @patient.user_id = current_user.id
     @patient.save
+
+    # Create song fields
     @song = @patient.songs.create
+
+    # Create interests fields
+    @interest = @patient.interests.create
+
+
     redirect_to edit_patient_path(@patient)
-
-
   end
 
   # PATCH/PUT /patients/1
@@ -79,8 +87,21 @@ class PatientsController < ApplicationController
           @video = @patient.videos.create(clip: clip)
         end
       end
+
+      # raise "hell"
+
+      if params[:interests]
+        params[:interests].each do |i, value|
+        # where i is the key in the input hash which represents the category
+        # and values are the user form inputs
+          # i = Interest.create(name: value, patient_id: @patient.id, category_id: i)
+          @patient.interests.create(name: value, category_id: i, patient_id: @patient.id)
+        end
+      end
       redirect_to :back
     end
+
+
       
     
   end
@@ -114,6 +135,6 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:first_name, :last_name, :nickname, :language, :birthplace,
         :home_base, :spouse_name, :children, :grandchildren, :occupation, :pets, :favourite_sports,
         :favourite_radio, :favourite_childhood_games, :favourite_movie_tv, :favourite_actors,
-        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, songs_attributes: [:id, :title, :artist, :url])
+        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, songs_attributes: [:id, :title, :artist, :url], :patients_interests => [])
     end
 end
