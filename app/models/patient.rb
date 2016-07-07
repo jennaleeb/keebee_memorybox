@@ -14,14 +14,18 @@ class Patient < ActiveRecord::Base
 	accepts_nested_attributes_for :songs
 	accepts_nested_attributes_for :interests, :reject_if => lambda { |b| b[:name].blank? }
 
-	# Take semi-colon separated string and turn it into a list
+	# For experimenting with tests, not implemented
+	def describe
+		return "#{self.first_name} #{self.last_name}"
+	end
+
+	# Take model's comma separated string and turn it into a list
 	def split_list(attribute)
 		unless attribute.nil?
 			list = attribute.split(",")
 		end
 		return list
 	end
-
 
 	# Create local folder for patient images
 	def create_directory

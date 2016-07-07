@@ -50,6 +50,7 @@
 		padding: 0;
 		display: block;
 		margin-left: 2em;
+		min-height: 2em;
 	}
 
 	li {
@@ -393,7 +394,7 @@ nav li {
 }
 
 #pictures-container {
-	height: 35em;
+	height: 45em;
 	overflow: scroll;
 }
 

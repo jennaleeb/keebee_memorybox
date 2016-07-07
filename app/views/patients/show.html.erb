@@ -30,11 +30,13 @@
 				<div class="column-left">
 					<div id="show-profile-image">
 						<div class="black-overlay">
-							<div class="center-content text-overlay">
-							  <h2 class=""><%= @patient.first_name %>'s</h2><br>
-							  <h1 class="thin-font">KEEBEE<span class="thick-font"> MEMORY BOX</span></h1>
+
+							<div class="center-bubble text-overlay">
+							  <p class="title"><%= @patient.first_name %>'s<br>
+							  	KEEBEE<span class="thick-font"> MEMORY BOX</span></p>
 							</div>
 						</div>
+
 					</div>
 				</div>
 				
@@ -43,6 +45,11 @@
 					<div class="profile-content">
 						<h3>Basic Information</h3>
 						<table class="table">
+							<tr>
+								<td class="table-head">Residence</td>
+								<td><%= @patient.residence %></td>
+							</tr>
+
 							<tr>
 								<td class="table-head">Nickname</td>
 								<td><%= @patient.nickname %></td>
@@ -78,7 +85,7 @@
 									</ul>
 								</td>
 							</tr>
-
+							
 							<tr>
 								<td class="table-head">Grandchildren</td>
 								<td>
@@ -226,9 +233,9 @@
 						  
 						  <ul id="photo-container-<%= photo.id %>">
 						  	<% photo.tags.each do |tag| %>
-						  		<li><%= tag.name %></li>
+						  		<li id="tag-<%=tag.id%>"><%= link_to tag.name, tag_path(tag), remote: true, method: :delete %></li>
 						  	<% end %>
-						  	</ul>
+						  </ul>
 						  <% end %>
 
 				  		</div>

@@ -2,9 +2,13 @@ class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   respond_to :js, :html
+
+
   # GET /patients
   # GET /patients.json
   def index
+    
+    # List patients who were added or their profiles changed 1 week ago
     @recently_added_patients = Patient.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
     @recently_updated_patients = Patient.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
 
@@ -135,6 +139,6 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:first_name, :last_name, :nickname, :language, :birthplace,
         :home_base, :spouse_name, :children, :grandchildren, :occupation, :pets, :favourite_sports,
         :favourite_radio, :favourite_childhood_games, :favourite_movie_tv, :favourite_actors,
-        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, songs_attributes: [:id, :title, :artist, :url], :patients_interests => [])
+        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, :residence, songs_attributes: [:id, :title, :artist, :url], :patients_interests => [])
     end
 end

@@ -10,8 +10,8 @@
 
  		<div class="steps-container">
  			<ul class="steps">
- 				<li data-step="1" data-name="campaign" class="active">
- 					<span class="badge">1</span>New Profile
+ 				<li data-step="1" class="active">
+ 					<span class="badge">1</span>Profile
  					<span class="chevron"></span>
  				</li>
  				<li data-step="2">
@@ -22,11 +22,11 @@
  					<span class="badge">3</span>Interests
  					<span class="chevron"></span>
  				</li>
- 				<li data-step="4" data-name="template">
+ 				<li data-step="4">
  					<span class="badge">4</span>Videos
  					<span class="chevron"></span>
  				</li>
- 				<li data-step="5" data-name="template">
+ 				<li data-step="5">
  					<span class="badge">5</span>Photos
  					<span class="chevron"></span>
  				</li>
@@ -50,9 +50,7 @@
  					<div class="column-left">
  						<div id="new-profile-image">
  							<div class="black-overlay">
- 								<div class="center-content">
- 									<h4 class="text-overlay">Create a profile for your loved one.</h4>
- 								</div>
+								<h2 class="center-content text-overlay">Create a profile for your loved one.</h2>
  								
  							</div>
  						</div>
@@ -76,6 +74,11 @@
  								  <div class="">
  								    <%= f.text_field :last_name, :class => 'form-control' %>
  								  </div>
+ 								</div>
+
+ 								<div class="form-group">
+ 									<%= f.label :residence, "Residence" %>
+ 									<%= f.text_field :residence, :class => 'form-control' %>
  								</div>
 
  								<% if current_user.admin_user? %>
@@ -107,11 +110,9 @@
  					<div class="column-left">
  						<div id="describe-them-image">
  							<div class="black-overlay">
- 								<div class="center-content text-overlay">
- 									<h1 class="">Tell us more about them</h1><br>
- 								</div>
+								<h2 class="center-content text-overlay">Tell us more about them.</h2>
  							</div>
- 						</div>
+						</div>
  					</div>
  					
  					<div class="column-right">
@@ -202,9 +203,7 @@
  					<div class="column-left">
  						<div id="describe-them-image">
  							<div class="black-overlay">
- 								<div class="center-content text-overlay">
- 									<h1 class="">Tell us more about them</h1><br>
- 								</div>
+								<h2 class="center-content text-overlay">Tell us more about them.</h2>
  							</div>
  						</div>
  					</div>
@@ -259,8 +258,8 @@
 					  		</div>
 
 					  		<div class="form-group">
-
 					  		  <%= label_tag :name, "Does your love one have a favourite sport?" , :class => '' %>
+
 					  		  <p>If more than one, enter them separated by a comma.</p>
 					  		    <div class=""> 
 					  		      <%= text_field_tag "interests[#{Category.return_cat_id("Favourite Sports")}]", nil, :placeholder => 'E.g. Soccer, baseball, bowling', :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
@@ -301,7 +300,9 @@
 					  		</div>
 
 					  		<div class="form-group">
+
 					  		  <%= label_tag :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
+
 					  		<p>If more than one, enter them separated by a comma.</p>
 					  		    <div class=""> 
 					  		      <%= text_field_tag "interests[#{Category.return_cat_id("Favourite Activities/Hobbies")}]", nil, :placeholder => 'E.g. Knitting, gardening, fishing', :class => 'form-control tokenize' %>
@@ -309,6 +310,7 @@
 					  		</div>
 
 					  		<div class="form-group">
+
 					  		  <%= label_tag :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
 					  		
 					  		    <div class=""> 

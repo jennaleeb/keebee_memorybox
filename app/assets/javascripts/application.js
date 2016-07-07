@@ -20,6 +20,7 @@
 //= require jquery.remotipart
 //= require tags.js
 //= require patients.js
+//= require profile_search.js
 //= require_self
 
 $(document).ready(function() {
