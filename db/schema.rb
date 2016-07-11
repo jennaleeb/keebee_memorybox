@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160702125736) do
+ActiveRecord::Schema.define(version: 20160711140946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +24,14 @@ ActiveRecord::Schema.define(version: 20160702125736) do
 
   create_table "interests", force: :cascade do |t|
     t.string   "name"
+    t.integer  "patient_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
-    t.integer  "patient_id"
   end
 
   add_index "interests", ["category_id"], name: "index_interests_on_category_id", using: :btree
+  add_index "interests", ["patient_id"], name: "index_interests_on_patient_id", using: :btree
 
   create_table "patient_interests", force: :cascade do |t|
     t.integer  "patient_id"
@@ -46,10 +46,8 @@ ActiveRecord::Schema.define(version: 20160702125736) do
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "favourite_music"
-    t.string   "favourite_activities"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "nickname"
     t.string   "language"
     t.string   "birthplace"
@@ -59,12 +57,6 @@ ActiveRecord::Schema.define(version: 20160702125736) do
     t.string   "grandchildren"
     t.string   "occupation"
     t.string   "pets"
-    t.string   "favourite_sports"
-    t.string   "favourite_radio"
-    t.string   "favourite_childhood_games"
-    t.string   "favourite_movie_tv"
-    t.string   "favourite_actors"
-    t.string   "favourite_animals"
     t.text     "additional_info"
     t.integer  "user_id"
     t.string   "rfid_number"
@@ -134,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160702125736) do
   add_index "videos", ["patient_id"], name: "index_videos_on_patient_id", using: :btree
 
   add_foreign_key "interests", "categories"
+  add_foreign_key "interests", "patients"
   add_foreign_key "patient_interests", "interests"
   add_foreign_key "patient_interests", "patients"
   add_foreign_key "patients", "users"

@@ -10,7 +10,7 @@
  				</li>
 
  				<li data-step="2" data-name="template">
- 					<span class="badge">2</span>Photos
+ 					<span class="badge">2</span>Media
  					<span class="chevron"></span>
  				</li>
  			</ul>
@@ -120,85 +120,12 @@
 						<table class="table">
 							<% @patient.interests.each do |interest| %>
 							<tr>
-								<td class="table-head"><%= interest.category %></td>
+								<td class="table-head"><%= Category.find(interest.category_id).name %></td>
 								<td><%=interest.name %></td>
 							</tr>
 							<% end %>
 
 							<tr>
-								<td class="table-head">Favourite Song</td>
-								<td><% @patient.songs.each do |song| %>
-										<%= song.title %>
-									<% end %>
-
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite Sports</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_sports)).each do |sport| %>
-										<li><%= sport.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite Radio</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_radio)).each do |radio| %>
-										<li><%= radio.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite TV/Movies</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_movie_tv)).each do |title| %>
-										<li><%= title.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite Childhood Games</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_childhood_games)).each do |game| %>
-										<li><%= game.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite Actors</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_actors)).each do |actor| %>
-										<li><%= actor.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
-
-							<tr>
-								<td class="table-head">Favourite Animals</td>
-								<td>
-									<ul>
-										<% Array(@patient.split_list(@patient.favourite_animals)).each do |animal| %>
-										<li><%= animal.titlecase %></li>
-										<% end %>
-									</ul>
-								</td>
-							</tr>
 
 							<tr>
 								<td class="table-head">Additional Information</td>
@@ -239,6 +166,22 @@
 						  <% end %>
 
 				  		</div>
+					<% end %>
+
+			  		<% @patient.videos.each do |video| %>
+
+				  		<div class="photo-tile">
+				  			<%= link_to image_tag(video.clip.url(:thumb), class: 'media-object'), video.clip.url, target: '_blank' %>
+
+					  		  <%= link_to patient_video_path(@patient, video), :class => "delete-image", :method => :delete, remote: true do %>
+						  		<i class="fa fa-trash"></i>
+						  <% end %>
+
+					
+
+						  </div>
+						  
+						  		
 					<% end %>
 
 	  		</div>
