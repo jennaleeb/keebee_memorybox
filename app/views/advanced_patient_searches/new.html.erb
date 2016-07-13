@@ -1,0 +1,5 @@
+
+<%= form_tag advanced_patient_searches_path, method: :get do %>
+  <%= text_field_tag :residence, params[:residence] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>

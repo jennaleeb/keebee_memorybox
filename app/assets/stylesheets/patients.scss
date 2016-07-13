@@ -95,8 +95,9 @@
 	cursor: pointer; cursor: hand;
 }
 
-.patient-index-table th:nth-child(4) {
-	width: 12em;
+.patient-index-table th:last-child, 
+.patient-index-table td:last-child {
+	text-align: right;
 }
 
 .hiddenRow {
@@ -159,7 +160,7 @@
 	text-align: center;
 	margin: 2em 0;
 	input[type="text"] {
-		width: 25%;
+		width: 40%;
 
 	}
 	
@@ -186,7 +187,7 @@
 
 .tabs {
 	position: relative;   
-	min-height: 500px;
+	min-height: 600px;
 	clear: both;
 	margin: 1em auto;
 
@@ -194,12 +195,15 @@
 
 @media (min-width: 768px) {
 	.tabs {
-		width: 70%;
+		width: 75%;
+		text-align: center;
 	}
+
 }
 
 .tab {
-	float: left;
+	display: inline-block;
+
 }
 
 .tab label {
@@ -208,8 +212,9 @@
 	height: 50px;
 	text-align: center;
 	padding-top: 0.4em;
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	font-weight: bold;
 	color: #95a5a6;
 
 	i {
@@ -236,13 +241,40 @@
 	border: 1px solid #ccc; 
 	overflow: auto;
 	margin-top: 0.5em;
+	text-align: left;
 }
 
 [type=radio]:checked ~ label {
 	color: #354c8c;
 	z-index: 2;
+	font-weight: bold;
 }
 
 [type=radio]:checked ~ label ~ .tab-content {
 	z-index: 1;	
 }
+
+/*Icons*/
+
+.refresh-button i {
+	color: #95a5a6;
+	margin-left: 1em;
+
+}
+
+.fa-minus-square-o, .fa-plus-square-o {
+	color: #95a5a6;
+	float: right;
+	margin-right: 0.5em;
+}
+
+.adv_search_fields {
+	margin-bottom: 0.5em;
+    margin-left: 6em;
+    margin-top: 0.5em;
+}
+
+.adv_search_btn {
+	float: right;
+}
+

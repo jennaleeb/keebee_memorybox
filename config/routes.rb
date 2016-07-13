@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     resources :videos
   end
 
-
   resources :tags
 
-  #get 'photos/new?:patient_id' => 'photos#create'
+  # Advanced search functionality sits within the patient index page
+  get 'advanced_patient_searches' => 'patients#index'
+  post 'advanced_patient_searches' => 'patients#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

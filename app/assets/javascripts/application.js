@@ -21,6 +21,7 @@
 //= require tags.js
 //= require patients.js
 //= require profile_search.js
+//= require nested_form_fields
 //= require_self
 
 $(document).ready(function() {

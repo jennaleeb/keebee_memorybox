@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711140946) do
+ActiveRecord::Schema.define(version: 20160713203051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
+  create_table "advanced_patient_searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "search_category_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "interest_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,14 +31,12 @@ ActiveRecord::Schema.define(version: 20160711140946) do
 
   create_table "interests", force: :cascade do |t|
     t.string   "name"
-    t.integer  "patient_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
   end
 
   add_index "interests", ["category_id"], name: "index_interests_on_category_id", using: :btree
-  add_index "interests", ["patient_id"], name: "index_interests_on_patient_id", using: :btree
 
   create_table "patient_interests", force: :cascade do |t|
     t.integer  "patient_id"
@@ -42,6 +47,16 @@ ActiveRecord::Schema.define(version: 20160711140946) do
 
   add_index "patient_interests", ["interest_id"], name: "index_patient_interests_on_interest_id", using: :btree
   add_index "patient_interests", ["patient_id"], name: "index_patient_interests_on_patient_id", using: :btree
+
+  create_table "patient_search_categories", force: :cascade do |t|
+    t.string   "keyword"
+    t.integer  "advanced_patient_search_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "search_category_id"
+  end
+
+  add_index "patient_search_categories", ["advanced_patient_search_id"], name: "index_patient_search_categories_on_advanced_patient_search_id", using: :btree
 
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
@@ -125,10 +140,10 @@ ActiveRecord::Schema.define(version: 20160711140946) do
 
   add_index "videos", ["patient_id"], name: "index_videos_on_patient_id", using: :btree
 
-  add_foreign_key "interests", "categories"
-  add_foreign_key "interests", "patients"
+  add_foreign_key "interests", "interest_categories", column: "category_id"
   add_foreign_key "patient_interests", "interests"
   add_foreign_key "patient_interests", "patients"
+  add_foreign_key "patient_search_categories", "advanced_patient_searches"
   add_foreign_key "patients", "users"
   add_foreign_key "songs", "patients"
   add_foreign_key "tags", "photos"

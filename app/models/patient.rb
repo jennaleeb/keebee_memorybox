@@ -3,6 +3,7 @@ require 'fileutils'
 class Patient < ActiveRecord::Base
 
 	include ActiveModel::Dirty
+	include Filterable
 
 	belongs_to :user
 	has_many :patient_interests
@@ -11,8 +12,10 @@ class Patient < ActiveRecord::Base
 	has_many :songs, dependent: :destroy
 	has_many :videos, dependent: :destroy
 
-	accepts_nested_attributes_for :songs
+	accepts_nested_attributes_for :songs, allow_destroy: true
 	accepts_nested_attributes_for :interests, :reject_if => lambda { |b| b[:name].blank? }
+
+	scope :residence, -> (residence) {where("residence ILIKE ?", "#{residence}")}
 
 	# For experimenting with tests, not implemented
 	def describe
@@ -53,4 +56,11 @@ class Patient < ActiveRecord::Base
 		return patients
 
 	end
+
+	def self.patients_recent_update
+		updated_interests = PatientInterest.all.where("created_at > ?", 1.day.ago.utc).collect {|p| Patient.find(p.patient_id)}.uniq
+		updated_profiles = Patient.where("updated_at > ?", 1.day.ago.utc)
+		return (updated_interests + updated_profiles).uniq
+	end
+
 end
