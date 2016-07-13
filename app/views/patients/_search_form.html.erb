@@ -8,10 +8,8 @@
 				<div class="col-md-3">
 
 
+  	 			<%= ff.select(:search_category_id, InterestCategory.all.collect {|p| [ p.name, p.id ] } + ['Residence', 'Photo Tags'], {}, {:class => 'form-control'})%>
 
-  	 			<%= ff.collection_select(:search_category_id, InterestCategory.all, :id, :name, {}, {:class => 'form-control'})%>
-
-<!--  				<%= ff.select(:search_category_id, ['Interests', 'Residence', 'Photo Tags'], {}, {:class => "form-control"}) %> -->
 				</div>
 				<div class="col-md-7">
 					

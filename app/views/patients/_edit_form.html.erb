@@ -268,75 +268,18 @@
                   
                 </div>
 
+                <% InterestCategory.all.each do |interest_category| %>
 
                 <div class="form-group">
-                  <%= label_tag :name, "What is their favourite type of music?" , :class => '' %>
-                    <div class="">
-
-                      <%= select_tag "interests[#{InterestCategory.return_cat_id("Favourite Music")}]", options_for_select(['Classical', 'Jazz', 'Rock', 'Country', 'Opera', 'Latin', 'African', 'Swing']), :multiple => :multiple, :class => "form-control" %>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <%= label_tag :name, "Does your love one have a favourite sport?" , :class => '' %>
+                  <%= label_tag :name, "#{interest_category.name}" , :class => '' %>
 
                   <p>If more than one, enter them separated by a comma.</p>
                     <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Sports")}]", nil, :placeholder => 'E.g. Soccer, baseball, bowling', :class => 'form-control tokenize', :placeholder => 'E.g. Soccer, baseball, bowling' %>
+                      <%= text_field_tag "interests[#{interest_category.id}]", @patient.interests.where(category_id: interest_category.id).collect{|i| i.name + ","}, :class => 'form-control tokenize', :placeholder => InterestCategory.examples[interest_category.name] %>
                     </div>
                 </div>
 
-                <div class="form-group">
-                  <%= label_tag :favourite_radio, "Favourite radio show?" , :class => '' %>
-                  <p>If more than one, enter them separated by a comma.</p>
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Radio")}]", nil, :placeholder => 'E.g. CBC, Car Talk', :class => 'form-control tokenize' %>
-                    </div>
-                </div>
-              
-                <div class="form-group">
-                  <%= label_tag :favourite_movie_tv, "Favourite movies or tv shows?" , :class => '' %>
-                  <p>If more than one, enter them separated by a comma.</p>
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite TV/Movies")}]", nil, :placeholder => 'E.g. Hey Lucy, Leave it to Beaver', :class => 'form-control tokenize' %>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <%= label_tag :favourite_childhood_games, "Favourite games to play as a child?" , :class => '' %>
-                  <p>If more than one, enter them separated by a comma.</p>
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Childhood Games")}]", nil, :placeholder => 'E.g. Checkers, Hopscotch', :class => 'form-control tokenize' %>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <%= label_tag :favourite_actors, "Favourite actor(s)?" , :class => '' %>
-                  <p>If more than one, enter them separated by a comma.</p>
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Actors")}]", nil, :placeholder => 'E.g. Andy Griffith, Judy Garland, Betty Davis', :class => 'form-control tokenize' %>
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                  <%= label_tag :favourite_activities, "What are your love one's favourite activities/hobbies?" , :class => '' %>
-
-                <p>If more than one, enter them separated by a comma.</p>
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Activities/Hobbies")}]", nil, :placeholder => 'E.g. Knitting, gardening, fishing', :class => 'form-control tokenize' %>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                  <%= label_tag :favourite_animals, "What are your love one's favourite animals?" , :class => '' %>
-                
-                    <div class=""> 
-                      <%= text_field_tag "interests[#{InterestCategory.return_cat_id("Favourite Animals")}]", nil, :placeholder => 'E.g. Cats, dogs', :class => 'form-control tokenize' %>
-                    </div>
-                </div>
+                <% end %>
 
                 <div class="form-group">
                   <%= f.label :additional_info, "Anything else to add (greatest accomplishments, favourite memories, etc)" , :class => '' %>

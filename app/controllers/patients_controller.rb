@@ -8,31 +8,30 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
 
-    # Ensure the form has one field on page load
-    @advanced_patient_search = AdvancedPatientSearch.new
-    @advanced_patient_search.patient_search_categories.build
-    # raise 'hell'
-    if params[:advanced_patient_search]
-      # category = InterestCategory.find(params[:advanced_patient_search][:search_category_id])
-      # raise 'hell'
-
-      @patients_advanced_filter = Patient.filter(params[:advanced_patient_search][:patient_search_categories_attributes])
-      # cat_id = params[:advanced_patient_search][:search_category_id]
-      # @patients_advanced_filter = Interest.find_by(name: "#{params[:advanced_patient_search][:patient_search_categories_attributes]["0"][:keyword]}" ).patients
-
-    end
-    # List patients who were added or their profiles changed 1 week ago
-    @recently_added_patients = Patient.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
-    @recently_updated_patients = Patient.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
-
-
     if current_user.admin_user?
 
+      # Simple search
       if params[:search]
           @patients = Patient.search(params[:search]).order("created_at DESC")
         else
           @patients = Patient.order('created_at DESC')
       end
+
+      # Recently added/updated
+      # List patients who were added or their profiles changed 1 week ago
+      @recently_added_patients = @patients.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
+      @recently_updated_patients = @patients.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
+
+      # Advanced Search
+      # Ensure the form has one field on page load
+      @advanced_patient_search = AdvancedPatientSearch.new
+      @advanced_patient_search.patient_search_categories.build
+
+
+      if params[:advanced_patient_search]
+        @patients_advanced_filter = Patient.filter(params[:advanced_patient_search][:patient_search_categories_attributes])
+      end
+
 
     else
 
@@ -60,6 +59,7 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+
     # @patient.songs.build
 
   end
@@ -99,9 +99,21 @@ class PatientsController < ApplicationController
         params[:interests].each do |i, value|
         # where i is the key in the input hash which represents the category
         # and values are the user form inputs
-          # i = Interest.create(name: value, patient_id: @patient.id, category_id: i)
-          interest = Interest.find_or_create_by(name: value, category_id: i)
-          PatientInterest.create(interest_id: interest.id, patient_id: @patient.id)
+
+          # Split on comma to create separate interests if user enter more than one
+
+          if value.include? ","
+            value.split(", ").each do |interest_name|
+
+              interest = Interest.find_or_create_by(name: interest_name.chomp(","), category_id: i)
+              PatientInterest.create(interest_id: interest.id, patient_id: @patient.id)
+
+            end
+          else
+            interest = Interest.find_or_create_by(name: value, category_id: i)
+            PatientInterest.create(interest_id: interest.id, patient_id: @patient.id)
+          end
+
         end
       end
       redirect_to :back

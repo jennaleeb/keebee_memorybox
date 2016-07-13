@@ -11,4 +11,12 @@ class Interest < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :category_id
 
   scope :interest_name, -> (name) {where(name: "#{name}")}
+
+  # Take model's comma separated string and turn it into a list
+  def self.split_list(attribute)
+  	unless attribute.nil?
+  		list = attribute.split(",")
+  	end
+  	return list
+  end
 end
