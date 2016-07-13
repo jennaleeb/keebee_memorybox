@@ -4,14 +4,7 @@
 
   <div class="row">
     
-      <%= form_tag(patients_path, :method => "get", class: "form-inline") do %>
-
-        <div class="patient-search">
-        <%= text_field_tag :search, params[:search], placeholder: "search by first or last name, RFID, etc.", class: "form-control" %>
-        <%= submit_tag "Search" , class: "btn btn-default" %>
-
-        </div>
-      <% end %>
+  
     
   </div>
 
@@ -22,6 +15,16 @@
         <label for="tab-1"><i class='fa fa-users' aria-hidden='true'></i>All Profiles</label>
 
         <div class="tab-content">
+
+          <%= form_tag(patients_path, :method => "get", class: "form-inline") do %>
+
+            <div class="patient-search">
+            <%= text_field_tag :search, params[:search], placeholder: "search by first name, last name or RFID.", class: "form-control" %>
+            <%= submit_tag "Search" , class: "btn btn-default" %>
+
+            </div>
+          <% end %>
+
           <table class="table table-striped patient-index-table">
             <thead>
 

@@ -4,9 +4,8 @@
 	<%= form_for @advanced_patient_search, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true } do |f| %>
 
 		<%= f.nested_fields_for :patient_search_categories do |ff| %>
-			<div class="row">
+			<div class="row adv_search_fields">
 				<div class="col-md-3">
-
 
   	 			<%= ff.select(:search_category_id, InterestCategory.all.collect {|p| [ p.name, p.id ] } + ['Residence', 'Photo Tags'], {}, {:class => 'form-control'})%>
 
@@ -28,7 +27,7 @@
 		<br>
 		<div class="row">
 			<div class="col-md-4">
-				<%= f.submit 'Search', :class => 'btn btn-primary form-button' %>
+				<%= f.submit 'Search', :class => 'btn btn-primary adv_search_btn' %>
 
 			</div>
 		</div>

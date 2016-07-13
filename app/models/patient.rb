@@ -57,4 +57,10 @@ class Patient < ActiveRecord::Base
 
 	end
 
+	def self.patients_recent_update
+		updated_interests = PatientInterest.all.where("created_at > ?", 1.day.ago.utc).collect {|p| Patient.find(p.patient_id)}.uniq
+		updated_profiles = Patient.where("updated_at > ?", 1.day.ago.utc)
+		return (updated_interests + updated_profiles).uniq
+	end
+
 end

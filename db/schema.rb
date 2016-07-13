@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712175559) do
+ActiveRecord::Schema.define(version: 20160713203051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,14 +31,12 @@ ActiveRecord::Schema.define(version: 20160712175559) do
 
   create_table "interests", force: :cascade do |t|
     t.string   "name"
-    t.integer  "patient_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
   end
 
   add_index "interests", ["category_id"], name: "index_interests_on_category_id", using: :btree
-  add_index "interests", ["patient_id"], name: "index_interests_on_patient_id", using: :btree
 
   create_table "patient_interests", force: :cascade do |t|
     t.integer  "patient_id"
@@ -143,7 +141,6 @@ ActiveRecord::Schema.define(version: 20160712175559) do
   add_index "videos", ["patient_id"], name: "index_videos_on_patient_id", using: :btree
 
   add_foreign_key "interests", "interest_categories", column: "category_id"
-  add_foreign_key "interests", "patients"
   add_foreign_key "patient_interests", "interests"
   add_foreign_key "patient_interests", "patients"
   add_foreign_key "patient_search_categories", "advanced_patient_searches"

@@ -19,8 +19,8 @@ class PatientsController < ApplicationController
 
       # Recently added/updated
       # List patients who were added or their profiles changed 1 week ago
-      @recently_added_patients = @patients.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
-      @recently_updated_patients = @patients.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
+      @recently_added_patients = Patient.where("created_at >= ?", 1.day.ago.utc).order('created_at DESC')
+      @recently_updated_patients = Patient.patients_recent_update
 
       # Advanced Search
       # Ensure the form has one field on page load
