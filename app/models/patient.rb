@@ -3,6 +3,7 @@ require 'fileutils'
 class Patient < ActiveRecord::Base
 
 	include ActiveModel::Dirty
+	include Filterable
 
 	belongs_to :user
 	has_many :patient_interests
@@ -11,8 +12,10 @@ class Patient < ActiveRecord::Base
 	has_many :songs, dependent: :destroy
 	has_many :videos, dependent: :destroy
 
-	accepts_nested_attributes_for :songs
+	accepts_nested_attributes_for :songs, allow_destroy: true
 	accepts_nested_attributes_for :interests, :reject_if => lambda { |b| b[:name].blank? }
+
+	scope :residence, -> (residence) {where("residence ILIKE ?", "#{residence}")}
 
 	# For experimenting with tests, not implemented
 	def describe
@@ -53,4 +56,5 @@ class Patient < ActiveRecord::Base
 		return patients
 
 	end
+
 end

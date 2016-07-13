@@ -1,0 +1,43 @@
+
+<div class="container-fluid">
+
+	<%= form_for @advanced_patient_search, :html => { :id => "form-in-wizard", :class => "form-horizontal", :multipart => true } do |f| %>
+
+		<%= f.nested_fields_for :patient_search_categories do |ff| %>
+			<div class="row">
+				<div class="col-md-3">
+
+
+
+  	 			<%= ff.collection_select(:search_category_id, InterestCategory.all, :id, :name, {}, {:class => 'form-control'})%>
+
+<!--  				<%= ff.select(:search_category_id, ['Interests', 'Residence', 'Photo Tags'], {}, {:class => "form-control"}) %> -->
+				</div>
+				<div class="col-md-7">
+					
+					<%= ff.text_field :keyword, :class => 'form-control' %>
+
+					
+				</div>
+
+				<div class="col-md-2">
+					<%= ff.remove_nested_fields_link ('<i class="fa fa-minus-square-o fa-2x" aria-hidden="true"></i>').html_safe %> 
+				</div>
+			</div>
+		<% end %>
+		<%= f.add_nested_fields_link :patient_search_categories, ('<i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>').html_safe  %>
+
+		<br>
+		<div class="row">
+			<div class="col-md-4">
+				<%= f.submit 'Search', :class => 'btn btn-primary form-button' %>
+
+			</div>
+		</div>
+		
+
+
+	<% end %>
+
+
+</div>

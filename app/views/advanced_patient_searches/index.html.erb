@@ -1,0 +1,52 @@
+<table class="table table-striped patient-index-table">
+  <thead>
+
+    <tr>
+      <th>RFID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Residence</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td class="col-md-2">
+          <%= patient.rfid_number %>
+        </td>
+        <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= patient.first_name %></td>
+        <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"> <%= patient.last_name %></td>
+        <td><%= patient.residence %></td>
+
+        <td>
+          <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_patient_path(patient), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      patient_path(patient),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="12" class="hiddenRow">
+          <div class="accordian-body collapse" id="data<%=patient.id%>">
+
+
+            
+            <div class="photo-container">
+              <% patient.photos.each do |photo| %>
+                <%= link_to image_tag(photo.image.url(:medium), class: 'media-object'), photo.image.url, target: '_blank' %>
+              <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

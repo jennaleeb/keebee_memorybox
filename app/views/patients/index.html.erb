@@ -9,6 +9,7 @@
         <div class="patient-search">
         <%= text_field_tag :search, params[:search], placeholder: "search by first or last name, RFID, etc.", class: "form-control" %>
         <%= submit_tag "Search" , class: "btn btn-default" %>
+
         </div>
       <% end %>
     
@@ -16,30 +17,32 @@
 
   <div class="tabs">
     <div class="tab">
+      <%= link_to ('<i class="fa fa-refresh fa-lg" aria-hidden="true"></i>').html_safe, patients_path, class: "refresh-button"  %>
         <input type="radio" id="tab-1" name="tab-group-1" checked>
-        <label for="tab-1"><i class="fa fa-users" aria-hidden="true"></i>All Profiles</label>
+        <label for="tab-1"><i class='fa fa-users' aria-hidden='true'></i>All Profiles</label>
 
         <div class="tab-content">
           <table class="table table-striped patient-index-table">
             <thead>
 
               <tr>
-                <th><%= model_class.human_attribute_name(:id) %></th>
-                <th><%= "RFID" %></th>
-                <th><%= model_class.human_attribute_name(:first_name) %></th>
-                <th><%= model_class.human_attribute_name(:last_name) %></th>
-                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+                <th>RFID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Residence</th>
+
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @patients.each do |patient| %>
                 <tr>
-                  <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= link_to patient.id, patient_path(patient) %></td>
                   <td class="col-md-2">
                     <%= patient.rfid_number %>
                   </td>
                   <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"><%= patient.first_name %></td>
                   <td data-toggle="collapse" data-target="#data<%=patient.id%>" class="accordion-toggle"> <%= patient.last_name %></td>
+                  <td><%= patient.residence %></td>
 
                   <td>
                     <%= link_to 'View', patient_path(patient), :class => 'btn btn-default btn-xs' %>
@@ -76,7 +79,7 @@
     </div>
 
     <div class="tab">
-        <input type="radio" id="tab-2" name="tab-group-1">
+        <input type="radio" id="tab-2" name="tab-group-1" >
         <label for="tab-2"><i class="fa fa-calendar" aria-hidden="true"></i>Recently Added (<%= @recently_added_patients.count %>)</label>
         <div class="tab-content">
           <table class="table table-striped patient-index-table">
@@ -130,18 +133,14 @@
     </div>
 
     <div class="tab">
-        <input type="radio" id="tab-4" name="tab-group-1">
+        <input type="radio" id="tab-4" name="tab-group-1" checked>
         <label for="tab-4"><i class="fa fa-cog" aria-hidden="true"></i>Advanced Search</label>
 
         <div class="tab-content">
 
-          <%= form_tag(patients_path, :method => "get", class: "form-inline") do %>
+          <%= render partial: "search_form.html.erb" %>
 
-            <div class="patient-search">
-            <%= text_field_tag :advanced_search, params[:advanced_search], placeholder: "search by first or last name, RFID, etc.", class: "form-control" %>
-            <%= submit_tag "Search" , class: "btn btn-default" %>
-            </div>
-          <% end %>
+
 
           <table class="table table-striped patient-index-table">
             <thead>

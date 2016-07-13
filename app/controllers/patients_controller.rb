@@ -7,14 +7,24 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    
+
+    # Ensure the form has one field on page load
+    @advanced_patient_search = AdvancedPatientSearch.new
+    @advanced_patient_search.patient_search_categories.build
+    # raise 'hell'
+    if params[:advanced_patient_search]
+      # category = InterestCategory.find(params[:advanced_patient_search][:search_category_id])
+      # raise 'hell'
+
+      @patients_advanced_filter = Patient.filter(params[:advanced_patient_search][:patient_search_categories_attributes])
+      # cat_id = params[:advanced_patient_search][:search_category_id]
+      # @patients_advanced_filter = Interest.find_by(name: "#{params[:advanced_patient_search][:patient_search_categories_attributes]["0"][:keyword]}" ).patients
+
+    end
     # List patients who were added or their profiles changed 1 week ago
     @recently_added_patients = Patient.where("created_at >= ?", 1.week.ago.utc).order('created_at DESC')
     @recently_updated_patients = Patient.where("updated_at >= ?", 1.week.ago.utc).order('updated_at DESC')
 
-    if params[:advanced_search]
-      @patients_advanced_filter = Patient.tag_search(params[:advanced_search])
-    end
 
     if current_user.admin_user?
 
@@ -33,7 +43,6 @@ class PatientsController < ApplicationController
       end
 
     end
-
   end
 
   # GET /patients/1
@@ -51,9 +60,8 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
+    # @patient.songs.build
 
-    # fix for multiple songs
-    # @song = @patient.songs.last
   end
 
   # POST /patients
@@ -62,13 +70,6 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     @patient.user_id = current_user.id
     @patient.save
-
-    # Create song fields
-    @song = @patient.songs.create
-
-    # Create interests fields
-    @interest = @patient.interests.create
-
 
     redirect_to edit_patient_path(@patient)
   end
@@ -99,7 +100,8 @@ class PatientsController < ApplicationController
         # where i is the key in the input hash which represents the category
         # and values are the user form inputs
           # i = Interest.create(name: value, patient_id: @patient.id, category_id: i)
-          @patient.interests.create(name: value, category_id: i, patient_id: @patient.id)
+          interest = Interest.find_or_create_by(name: value, category_id: i)
+          PatientInterest.create(interest_id: interest.id, patient_id: @patient.id)
         end
       end
       redirect_to :back
@@ -139,6 +141,7 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:first_name, :last_name, :nickname, :language, :birthplace,
         :home_base, :spouse_name, :children, :grandchildren, :occupation, :pets, :favourite_sports,
         :favourite_radio, :favourite_childhood_games, :favourite_movie_tv, :favourite_actors,
-        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, :residence, songs_attributes: [:id, :title, :artist, :url], :patients_interests => [])
+        :favourite_animals, :additional_info, :favourite_music, :favourite_activities, :user_id, :rfid_number, :residence,
+        songs_attributes: [:id, :title, :artist, :url, :_destroy], :patients_interests => [], patient_search_categories_attributes: [:keyword, :_destroy])
     end
 end

@@ -120,7 +120,7 @@
 						<table class="table">
 							<% @patient.interests.each do |interest| %>
 							<tr>
-								<td class="table-head"><%= Category.find(interest.category_id).name %></td>
+								<td class="table-head"><%= InterestCategory.find(interest.category_id).name %></td>
 								<td><%=interest.name %></td>
 							</tr>
 							<% end %>
