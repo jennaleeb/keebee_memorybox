@@ -77,6 +77,9 @@ gem 'remotipart', '~> 1.2'
 # Nested form fields add and remove dynamically
 gem 'nested_form_fields'
 
+# Generate fake profile information
+gem 'faker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

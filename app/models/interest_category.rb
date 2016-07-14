@@ -8,7 +8,7 @@ class InterestCategory < ActiveRecord::Base
 		return cat.id
 	end
 
-	@@EXAMPLES = {
+	@@examples = {
 		"Favourite Music" => "E.g. Classical, jazz",
 		"Favourite Sports" => "E.g. Soccer, baseball, bowling",
 		"Favourite Radio" => "E.g. CBC, Car Talk'",
@@ -20,6 +20,6 @@ class InterestCategory < ActiveRecord::Base
 	}
 
 	def self.examples
-		@@EXAMPLES
+		@@examples
 	end
 end
