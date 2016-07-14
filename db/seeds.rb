@@ -6,15 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Patient.populate 10 do |patient|
-	patient.first_name = Faker::Name.first_name
-	patient.last_name = Faker::Name.last_name
-	patient.birthplace = Faker::Address.country
-	patient.home_base = Faker::Address.city
-	patient.spouse_name = Faker::Name.name
+10.times do
+	
+	Patient.create(
+		first_name = Faker::Name.first_name
+		last_name = Faker::Name.last_name
+		birthplace = Faker::Address.country
+		home_base = Faker::Address.city
+		spouse_name = Faker::Name.name
 
-	residences = ['Grandview Lodge', 'Pine Springs', 'Fairview', 'Heritage Home']
-	patient.residence = residences.shuffle.sample
+		residences = ['Grandview Lodge', 'Pine Springs', 'Fairview', 'Heritage Home']
+		residence = residences.shuffle.sample
+	)
 
 end
 
