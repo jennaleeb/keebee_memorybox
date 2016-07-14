@@ -10,12 +10,12 @@
 10.times do
 
 	Patient.create(
-		first_name = Faker::Name.first_name,
-		last_name = Faker::Name.last_name,
-		birthplace = Faker::Address.country,
-		home_base = Faker::Address.city,
-		spouse_name = Faker::Name.name,
-		residence = @residences.shuffle.sample
+		first_name: Faker::Name.first_name,
+		last_name: Faker::Name.last_name,
+		birthplace: Faker::Address.country,
+		home_base: Faker::Address.city,
+		spouse_name: Faker::Name.name,
+		residence: @residences.shuffle.sample
 	)
 
 end
